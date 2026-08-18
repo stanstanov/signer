@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
@@ -35,14 +34,12 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.ZoomIn
 import androidx.compose.material.icons.outlined.ZoomOut
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
@@ -95,8 +92,6 @@ import lt.turron.signer.pdf.PdfPageRenderer
 import kotlin.math.max
 import kotlin.math.roundToInt
 
-private val ToolbarBlue = Color(0xFF1F57C2)
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(viewModel: SignerViewModel) {
@@ -134,12 +129,10 @@ fun MainScreen(viewModel: SignerViewModel) {
                 windowInsets = WindowInsets(0, 0, 0, 0),
                 modifier = Modifier.padding(top = 12.dp),
                 navigationIcon = {
-                    TextButton(
+                    Button(
                         onClick = { openPdf.launch(arrayOf("application/pdf")) },
-                        modifier = Modifier
-                            .padding(start = 10.dp)
-                            .background(ToolbarBlue, RoundedCornerShape(20.dp)),
-                        colors = ButtonDefaults.textButtonColors(contentColor = Color.White),
+                        modifier = Modifier.padding(start = 10.dp),
+                        shape = RoundedCornerShape(20.dp),
                         contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
                     ) {
                         Icon(Icons.Outlined.Description, contentDescription = null)
@@ -168,8 +161,6 @@ fun MainScreen(viewModel: SignerViewModel) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent,
-                    navigationIconContentColor = Color.White,
-                    actionIconContentColor = Color.White,
                 ),
             )
         },
@@ -282,19 +273,10 @@ private fun ToolbarIconButton(
     contentDescription: String,
     enabled: Boolean = true,
 ) {
-    IconButton(
+    FilledIconButton(
         onClick = onClick,
         enabled = enabled,
-        modifier = Modifier
-            .padding(horizontal = 2.dp)
-            .background(
-                ToolbarBlue.copy(alpha = if (enabled) 1f else 0.4f),
-                CircleShape,
-            ),
-        colors = IconButtonDefaults.iconButtonColors(
-            contentColor = Color.White,
-            disabledContentColor = Color.White.copy(alpha = 0.7f),
-        ),
+        modifier = Modifier.padding(horizontal = 2.dp),
     ) {
         Icon(icon, contentDescription = contentDescription)
     }
@@ -327,7 +309,12 @@ private fun ZoomPanel(scale: Float, onScale: (Float) -> Unit, onDone: () -> Unit
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(Icons.Outlined.ZoomOut, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
-        Slider(scale, onScale, valueRange = 0.5f..2.5f, modifier = Modifier.weight(1f).padding(horizontal = 8.dp))
+        SystemSlider(
+            value = scale,
+            onValueChange = onScale,
+            valueRange = 0.5f..2.5f,
+            modifier = Modifier.weight(1f).padding(horizontal = 8.dp),
+        )
         Icon(Icons.Outlined.ZoomIn, null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
         TextButton(onClick = onDone) { Text(stringResource(R.string.action_done)) }
     }

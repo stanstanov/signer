@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -37,7 +36,7 @@ fun SettingsSheet(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(stringResource(R.string.settings_multiple), modifier = Modifier.weight(1f))
-                Switch(checked = allowsMultiple, onCheckedChange = onChange, enabled = hasDocument)
+                SystemSwitch(checked = allowsMultiple, onCheckedChange = onChange, enabled = hasDocument)
             }
             Text(
                 stringResource(if (hasDocument) R.string.settings_multiple_footer else R.string.settings_open_first),
