@@ -15,6 +15,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -27,6 +28,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
@@ -36,9 +38,11 @@ import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.ZoomIn
 import androidx.compose.material.icons.outlined.ZoomOut
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Slider
@@ -66,6 +70,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
@@ -90,8 +95,9 @@ import lt.turron.signer.SignerViewModel
 import lt.turron.signer.StatusKey
 import lt.turron.signer.pdf.PdfPageRenderer
 import kotlin.math.max
-import kotlin.math.min
 import kotlin.math.roundToInt
+
+private val ToolbarBlue = Color(0xFF1F57C2)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -128,10 +134,15 @@ fun MainScreen(viewModel: SignerViewModel) {
             TopAppBar(
                 title = {},
                 windowInsets = WindowInsets(0, 0, 0, 0),
+                modifier = Modifier.padding(top = 12.dp),
                 navigationIcon = {
                     TextButton(
                         onClick = { openPdf.launch(arrayOf("application/pdf")) },
-                        modifier = Modifier.padding(start = 10.dp),
+                        modifier = Modifier
+                            .padding(start = 10.dp)
+                            .background(ToolbarBlue, RoundedCornerShape(20.dp)),
+                        colors = ButtonDefaults.textButtonColors(contentColor = Color.White),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 6.dp),
                     ) {
                         Icon(Icons.Outlined.Description, contentDescription = null)
                         Spacer(Modifier.width(8.dp))
@@ -139,20 +150,28 @@ fun MainScreen(viewModel: SignerViewModel) {
                     }
                 },
                 actions = {
-                    IconButton(onClick = { showSettings = true }) {
-                        Icon(Icons.Outlined.Settings, contentDescription = stringResource(R.string.action_settings))
-                    }
-                    IconButton(onClick = { showPad = true }, enabled = state.hasDocument) {
-                        Icon(Icons.Outlined.Draw, contentDescription = stringResource(R.string.action_signature))
-                    }
-                    IconButton(onClick = { viewModel.export() }, enabled = state.hasDocument) {
-                        Icon(Icons.Outlined.SaveAlt, contentDescription = stringResource(R.string.action_save))
-                    }
+                    ToolbarIconButton(
+                        onClick = { showSettings = true },
+                        icon = Icons.Outlined.Settings,
+                        contentDescription = stringResource(R.string.action_settings),
+                    )
+                    ToolbarIconButton(
+                        onClick = { showPad = true },
+                        enabled = state.hasDocument,
+                        icon = Icons.Outlined.Draw,
+                        contentDescription = stringResource(R.string.action_signature),
+                    )
+                    ToolbarIconButton(
+                        onClick = { viewModel.export() },
+                        enabled = state.hasDocument,
+                        icon = Icons.Outlined.SaveAlt,
+                        contentDescription = stringResource(R.string.action_save),
+                    )
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onSurface,
-                    actionIconContentColor = MaterialTheme.colorScheme.onSurface,
+                    navigationIconContentColor = Color.White,
+                    actionIconContentColor = Color.White,
                 ),
             )
         },
@@ -259,6 +278,31 @@ private fun statusText(state: SignerUiState): String = when (state.status) {
 }
 
 @Composable
+private fun ToolbarIconButton(
+    onClick: () -> Unit,
+    icon: ImageVector,
+    contentDescription: String,
+    enabled: Boolean = true,
+) {
+    IconButton(
+        onClick = onClick,
+        enabled = enabled,
+        modifier = Modifier
+            .padding(horizontal = 2.dp)
+            .background(
+                ToolbarBlue.copy(alpha = if (enabled) 1f else 0.4f),
+                CircleShape,
+            ),
+        colors = IconButtonDefaults.iconButtonColors(
+            contentColor = Color.White,
+            disabledContentColor = Color.White.copy(alpha = 0.7f),
+        ),
+    ) {
+        Icon(icon, contentDescription = contentDescription)
+    }
+}
+
+@Composable
 private fun StatusPanel(text: String) {
     Text(
         text = text,
@@ -320,85 +364,136 @@ private fun PdfPages(viewModel: SignerViewModel, state: SignerUiState) {
         }
     }
 
+    fun clampOffset(value: Offset, zoom: Float): Offset {
+        val view = viewportState.value
+        val viewW = view.width.toFloat()
+        val viewH = view.height.toFloat()
+        if (viewW == 0f || viewH == 0f) return value
+        val scaledW = view.width.coerceAtLeast(1) * zoom
+        val scaledH = contentHeightState.floatValue * zoom
+        val (minX, maxX) = if (scaledW <= viewW) {
+            val x = (viewW - scaledW) / 2f
+            x to x
+        } else {
+            (viewW - scaledW) to 0f
+        }
+        val (minY, maxY) = if (scaledH <= viewH) {
+            val y = (viewH - scaledH) / 2f
+            y to y
+        } else {
+            (viewH - scaledH) to 0f
+        }
+        return Offset(value.x.coerceIn(minX, maxX), value.y.coerceIn(minY, maxY))
+    }
+
+    LaunchedEffect(viewport.width, viewport.height, contentHeightState.floatValue) {
+        if (viewport.width == 0 || contentHeightState.floatValue <= 0f) return@LaunchedEffect
+        offsetState.value = clampOffset(offsetState.value, scaleState.floatValue)
+    }
+
     Box(
         Modifier
             .fillMaxSize()
             .clipToBounds()
             .onSizeChanged { viewportState.value = it }
             .pointerInput(renderer) {
-                fun clampOffset(value: Offset, zoom: Float): Offset {
+                fun clampPan(value: Offset, zoom: Float): Offset {
                     val view = viewportState.value
                     val viewW = view.width.toFloat()
                     val viewH = view.height.toFloat()
+                    if (viewW == 0f || viewH == 0f) return value
                     val scaledW = view.width.coerceAtLeast(1) * zoom
                     val scaledH = contentHeightState.floatValue * zoom
-                    val minX = min(0f, viewW - scaledW)
-                    val minY = min(0f, viewH - scaledH)
-                    return Offset(value.x.coerceIn(minX, 0f), value.y.coerceIn(minY, 0f))
+                    val (minX, maxX) = if (scaledW <= viewW) {
+                        val x = (viewW - scaledW) / 2f
+                        x to x
+                    } else {
+                        (viewW - scaledW) to 0f
+                    }
+                    val (minY, maxY) = if (scaledH <= viewH) {
+                        val y = (viewH - scaledH) / 2f
+                        y to y
+                    } else {
+                        (viewH - scaledH) to 0f
+                    }
+                    return Offset(value.x.coerceIn(minX, maxX), value.y.coerceIn(minY, maxY))
                 }
                 awaitPointerEventScope {
                     var previousDistance = 0f
                     var lastCentroid = Offset.Unspecified
-                    var oneFingerOrigin: Offset? = null
-                    var lastOneFinger = Offset.Zero
-                    var panning = false
-                    val slop = viewConfiguration.touchSlop
                     while (true) {
                         val event = awaitPointerEvent(PointerEventPass.Initial)
                         val pressed = event.changes.filter { it.pressed }
-                        if (pressed.size >= 2) {
-                            panning = false
-                            oneFingerOrigin = null
-                            val centroid = Offset(
-                                (pressed[0].position.x + pressed[1].position.x) / 2f,
-                                (pressed[0].position.y + pressed[1].position.y) / 2f,
-                            )
-                            val distance = (pressed[0].position - pressed[1].position)
-                                .getDistance()
-                                .coerceAtLeast(0.01f)
-                            if (previousDistance > 0f) {
-                                val oldScale = scaleState.floatValue
-                                val newScale = (oldScale * (distance / previousDistance)).coerceIn(1f, 5f)
-                                val factor = if (oldScale == 0f) 1f else newScale / oldScale
-                                val oldOffset = offsetState.value
-                                var next = centroid - (centroid - oldOffset) * factor
-                                if (lastCentroid != Offset.Unspecified) {
-                                    next += centroid - lastCentroid
-                                }
-                                scaleState.floatValue = newScale
-                                offsetState.value = clampOffset(next, newScale)
-                            }
-                            previousDistance = distance
-                            lastCentroid = centroid
-                            event.changes.forEach { it.consume() }
-                        } else {
+                        if (pressed.size < 2) {
                             previousDistance = 0f
                             lastCentroid = Offset.Unspecified
-                            if (pressed.size == 1) {
-                                val pos = pressed[0].position
-                                val origin = oneFingerOrigin
-                                if (origin == null) {
-                                    oneFingerOrigin = pos
-                                    lastOneFinger = pos
-                                    panning = false
-                                } else {
-                                    if (!panning && (pos - origin).getDistance() > slop) {
-                                        panning = true
-                                    }
-                                    if (panning) {
-                                        offsetState.value = clampOffset(
-                                            offsetState.value + (pos - lastOneFinger),
-                                            scaleState.floatValue,
-                                        )
-                                        pressed.forEach { it.consume() }
-                                    }
-                                    lastOneFinger = pos
-                                }
-                            } else {
-                                oneFingerOrigin = null
-                                panning = false
-                            }
+                            continue
                         }
+                        val centroid = Offset(
+                            (pressed[0].position.x + pressed[1].position.x) / 2f,
+                            (pressed[0].position.y + pressed[1].position.y) / 2f,
+                        )
+                        val distance = (pressed[0].position - pressed[1].position)
+                            .getDistance()
+                            .coerceAtLeast(0.01f)
+                        if (previousDistance > 0f) {
+                            val oldScale = scaleState.floatValue
+                            val newScale = (oldScale * (distance / previousDistance)).coerceIn(1f, 5f)
+                            val factor = if (oldScale == 0f) 1f else newScale / oldScale
+                            val oldOffset = offsetState.value
+                            var next = centroid - (centroid - oldOffset) * factor
+                            if (lastCentroid != Offset.Unspecified) {
+                                next += centroid - lastCentroid
+                            }
+                            scaleState.floatValue = newScale
+                            offsetState.value = clampPan(next, newScale)
+                        }
+                        previousDistance = distance
+                        lastCentroid = centroid
+                        event.changes.forEach { it.consume() }
+                    }
+                }
+            }
+            .pointerInput(renderer) {
+                fun clampPan(value: Offset, zoom: Float): Offset {
+                    val view = viewportState.value
+                    val viewW = view.width.toFloat()
+                    val viewH = view.height.toFloat()
+                    if (viewW == 0f || viewH == 0f) return value
+                    val scaledW = view.width.coerceAtLeast(1) * zoom
+                    val scaledH = contentHeightState.floatValue * zoom
+                    val (minX, maxX) = if (scaledW <= viewW) {
+                        val x = (viewW - scaledW) / 2f
+                        x to x
+                    } else {
+                        (viewW - scaledW) to 0f
+                    }
+                    val (minY, maxY) = if (scaledH <= viewH) {
+                        val y = (viewH - scaledH) / 2f
+                        y to y
+                    } else {
+                        (viewH - scaledH) to 0f
+                    }
+                    return Offset(value.x.coerceIn(minX, maxX), value.y.coerceIn(minY, maxY))
+                }
+                val slop = viewConfiguration.touchSlop
+                awaitEachGesture {
+                    val down = awaitFirstDown(requireUnconsumed = true)
+                    var last = down.position
+                    var panning = false
+                    drag(down.id) { change ->
+                        val pos = change.position
+                        if (!panning && (pos - down.position).getDistance() > slop) {
+                            panning = true
+                        }
+                        if (panning) {
+                            change.consume()
+                            offsetState.value = clampPan(
+                                offsetState.value + (pos - last),
+                                scaleState.floatValue,
+                            )
+                        }
+                        last = pos
                     }
                 }
             },
@@ -557,12 +652,15 @@ private fun SignatureStamp(
             .height(with(density) { heightPx.toDp() })
             .pointerInput(signature.id, scaleX, scaleY, leftPx, topPx) {
                 awaitEachGesture {
-                    val down = awaitFirstDown(requireUnconsumed = false)
+                    val down = awaitFirstDown(
+                        requireUnconsumed = false,
+                        pass = PointerEventPass.Initial,
+                    )
                     down.consume()
                     var total = Offset.Zero
                     var moved = false
                     val slop = viewConfiguration.touchSlop
-                    drag(down.id) { change ->
+                    val finished = drag(down.id) { change ->
                         total += change.positionChange()
                         change.consume()
                         if (!moved && total.getDistance() > slop) {
@@ -578,8 +676,10 @@ private fun SignatureStamp(
                         onMove(signature.id, newLeft, newBottom, signature.width, signature.height)
                         onDragHaptic()
                         drag = Offset.Zero
-                    } else {
+                    } else if (finished) {
                         onTap()
+                    } else {
+                        drag = Offset.Zero
                     }
                 }
             },
