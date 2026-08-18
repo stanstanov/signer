@@ -20,29 +20,35 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            VStack(spacing: 0) {
-                if let document {
-                    PDFTapPlaceView(
-                        document: document,
-                        currentPageIndex: $currentPageIndex,
-                        hasSignature: signatureImage != nil,
-                        placedSignatures: placedSignatures,
-                        onPlace: placeSignature,
-                        onDragEnd: moveSignature
-                    )
-                } else {
-                    ContentUnavailableView(
-                        "Нет PDF",
-                        systemImage: "doc.richtext",
-                        description: Text("Нажмите «Открыть PDF», чтобы начать.")
-                    )
+            ZStack(alignment: .bottom) {
+                Group {
+                    if let document {
+                        PDFTapPlaceView(
+                            document: document,
+                            currentPageIndex: $currentPageIndex,
+                            hasSignature: signatureImage != nil,
+                            placedSignatures: placedSignatures,
+                            onPlace: placeSignature,
+                            onDragEnd: moveSignature
+                        )
+                        .ignoresSafeArea()
+                    } else {
+                        ContentUnavailableView(
+                            "Нет PDF",
+                            systemImage: "doc.richtext",
+                            description: Text("Нажмите «Открыть PDF», чтобы начать.")
+                        )
+                    }
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
 
                 statusBar
             }
             .navigationTitle("Signer")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
+            .toolbarBackground(.hidden, for: .navigationBar)
+            .statusBarHidden(true)
             .fileImporter(
                 isPresented: $showImporter,
                 allowedContentTypes: [.pdf],
@@ -108,8 +114,11 @@ struct ContentView: View {
             .font(.footnote)
             .foregroundStyle(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(12)
-            .background(.bar)
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 12)
+            .background(.ultraThinMaterial)
+            .ignoresSafeArea(edges: .bottom)
     }
 
     @ToolbarContentBuilder
