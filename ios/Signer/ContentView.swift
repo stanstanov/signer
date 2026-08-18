@@ -119,6 +119,7 @@ struct ContentView: View {
             .modifier(GlassPanelBackground())
             .padding(.horizontal, 16)
             .padding(.bottom, 10)
+            .animation(nil, value: statusMessage)
     }
 
     @ToolbarContentBuilder
@@ -255,18 +256,15 @@ struct ContentView: View {
 private struct GlassPanelBackground: ViewModifier {
     private let shape = RoundedRectangle(cornerRadius: 22, style: .continuous)
 
-    @ViewBuilder
     func body(content: Content) -> some View {
-        if #available(iOS 26.0, *) {
-            content.glassEffect(.regular, in: shape)
-        } else {
-            content
-                .background(.ultraThinMaterial, in: shape)
-                .overlay {
-                    shape.strokeBorder(.white.opacity(0.22), lineWidth: 0.5)
-                }
-                .shadow(color: .black.opacity(0.16), radius: 16, y: 6)
-        }
+        content
+            .background {
+                shape.fill(Color(.secondarySystemBackground).opacity(0.92))
+            }
+            .overlay {
+                shape.strokeBorder(Color.primary.opacity(0.08), lineWidth: 0.5)
+            }
+            .shadow(color: .black.opacity(0.12), radius: 12, y: 4)
     }
 }
 
