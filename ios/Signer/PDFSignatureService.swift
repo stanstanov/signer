@@ -2,54 +2,6 @@ import UIKit
 import PDFKit
 
 enum PDFSignatureService {
-    /// Marker so we can find stamps even if PDFKit drops our subclass type.
-    static let signatureMarker = "signer.app.signature"
-
-    private static weak var lastSignatureAnnotation: PDFAnnotation?
-
-    /// Removes every stamp we placed from all pages.
-    static func removeAllSignatures(from document: PDFDocument) {
-        if let last = lastSignatureAnnotation {
-            last.page?.removeAnnotation(last)
-            lastSignatureAnnotation = nil
-        }
-
-        for i in 0..<document.pageCount {
-            guard let page = document.page(at: i) else { continue }
-            // Copy array — mutating while iterating is unsafe.
-            let annotations = page.annotations
-            for annotation in annotations where isOurSignature(annotation) {
-                page.removeAnnotation(annotation)
-            }
-        }
-    }
-
-    private static func isOurSignature(_ annotation: PDFAnnotation) -> Bool {
-        if annotation is PDFImageAnnotation { return true }
-        if annotation.userName == signatureMarker { return true }
-        if annotation.contents == signatureMarker { return true }
-        return false
-    }
-
-    /// Stamps every signature into the document (page coordinates, bottom-left origin).
-    /// Replaces any previous signature stamps we placed.
-    static func stampSignatures(_ signatures: [PlacedSignature], in document: PDFDocument) {
-        removeAllSignatures(from: document)
-        for signature in signatures {
-            guard let page = document.page(at: signature.pageIndex),
-                  let cgImage = signature.image.cgImage else { continue }
-            let annotation = PDFImageAnnotation(image: cgImage, bounds: signature.rect)
-            annotation.userName = signatureMarker
-            annotation.contents = signatureMarker
-            page.addAnnotation(annotation)
-            lastSignatureAnnotation = annotation
-        }
-    }
-
-    static func clearLastSignatureReference() {
-        lastSignatureAnnotation = nil
-    }
-
     static func clamp(_ rect: CGRect, to pageBounds: CGRect) -> CGRect {
         var r = rect
         if r.width > pageBounds.width {
@@ -67,7 +19,13 @@ enum PDFSignatureService {
         return r
     }
 
-    static func writeTemporaryPDF(_ document: PDFDocument, suggestedName: String) throws -> URL {
+    /// Writes a new PDF with signatures flattened into page content.
+    /// Stamp annotations are not used: PDFKit draws them twice on save, once upside down.
+    static func writeTemporaryPDF(
+        _ document: PDFDocument,
+        signatures: [PlacedSignature],
+        suggestedName: String
+    ) throws -> URL {
         let safe = suggestedName
             .replacingOccurrences(of: "/", with: "-")
             .trimmingCharacters(in: .whitespacesAndNewlines)
@@ -76,40 +34,74 @@ enum PDFSignatureService {
         if FileManager.default.fileExists(atPath: url.path) {
             try FileManager.default.removeItem(at: url)
         }
-        guard document.write(to: url) else {
-            throw NSError(
-                domain: "Signer",
-                code: 1,
-                userInfo: [NSLocalizedDescriptionKey: String(localized: "Couldn’t write the PDF.")]
-            )
+
+        guard let consumer = CGDataConsumer(url: url as CFURL),
+              let context = CGContext(consumer: consumer, mediaBox: nil, nil) else {
+            throw writeError
         }
+
+        for index in 0..<document.pageCount {
+            guard let page = document.page(at: index) else { continue }
+            let pdfKitBox = page.bounds(for: .mediaBox)
+            var pageBox = CGRect(origin: .zero, size: pdfKitBox.size)
+            context.beginPage(mediaBox: &pageBox)
+            context.setFillColor(gray: 1, alpha: 1)
+            context.fill(pageBox)
+
+            context.saveGState()
+            context.translateBy(x: -pdfKitBox.minX, y: -pdfKitBox.minY)
+            drawOriginalPage(page, in: context, displayBox: pdfKitBox)
+            for signature in signatures where signature.pageIndex == index {
+                drawSignature(signature, in: context)
+            }
+            context.restoreGState()
+            context.endPage()
+        }
+
+        context.closePDF()
         return url
     }
-}
 
-/// PDFKit has no public image annotation — custom stamp drawing.
-final class PDFImageAnnotation: PDFAnnotation {
-    private let cgImage: CGImage
-
-    init(image: CGImage, bounds: CGRect) {
-        self.cgImage = image
-        super.init(bounds: bounds, forType: .stamp, withProperties: nil)
-        userName = PDFSignatureService.signatureMarker
-        contents = PDFSignatureService.signatureMarker
+    private static var writeError: NSError {
+        NSError(
+            domain: "Signer",
+            code: 1,
+            userInfo: [NSLocalizedDescriptionKey: String(localized: "Couldn’t write the PDF.")]
+        )
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private static func drawOriginalPage(_ page: PDFPage, in context: CGContext, displayBox: CGRect) {
+        guard let cgPage = page.pageRef else { return }
+        let rotation = ((page.rotation % 360) + 360) % 360
+        let sourceBox = cgPage.getBoxRect(.mediaBox)
 
-    override func draw(with box: PDFDisplayBox, in context: CGContext) {
-        UIGraphicsPushContext(context)
         context.saveGState()
-        // PDFKit draws with flipped coordinates relative to UIKit images.
-        context.translateBy(x: bounds.origin.x, y: bounds.origin.y + bounds.height)
-        context.scaleBy(x: 1, y: -1)
-        context.draw(cgImage, in: CGRect(origin: .zero, size: bounds.size))
+        context.translateBy(x: displayBox.minX, y: displayBox.minY)
+        switch rotation {
+        case 90:
+            context.translateBy(x: displayBox.width, y: 0)
+            context.rotate(by: .pi / 2)
+        case 180:
+            context.translateBy(x: displayBox.width, y: displayBox.height)
+            context.rotate(by: .pi)
+        case 270:
+            context.translateBy(x: 0, y: displayBox.height)
+            context.rotate(by: 3 * .pi / 2)
+        default:
+            break
+        }
+        context.translateBy(x: -sourceBox.minX, y: -sourceBox.minY)
+        context.drawPDFPage(cgPage)
         context.restoreGState()
-        UIGraphicsPopContext()
+    }
+
+    private static func drawSignature(_ signature: PlacedSignature, in context: CGContext) {
+        guard let cgImage = signature.image.cgImage else { return }
+        let rect = signature.rect
+        context.saveGState()
+        context.translateBy(x: rect.minX, y: rect.minY + rect.height)
+        context.scaleBy(x: 1, y: -1)
+        context.draw(cgImage, in: CGRect(origin: .zero, size: rect.size))
+        context.restoreGState()
     }
 }

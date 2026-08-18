@@ -223,7 +223,6 @@ struct ContentView: View {
                 menuSignatureID = nil
                 zoomSignatureID = nil
                 allowsMultipleSignatures = false
-                PDFSignatureService.clearLastSignatureReference()
                 statusMessage = String(localized: "PDF loaded. Draw a signature, then tap the page.")
             } catch {
                 errorMessage = error.localizedDescription
@@ -341,10 +340,12 @@ struct ContentView: View {
 
     private func exportPDF() {
         guard let document else { return }
-        PDFSignatureService.stampSignatures(placedSignatures, in: document)
-        defer { PDFSignatureService.removeAllSignatures(from: document) }
         do {
-            let url = try PDFSignatureService.writeTemporaryPDF(document, suggestedName: pdfURL?.deletingPathExtension().lastPathComponent ?? "signed")
+            let url = try PDFSignatureService.writeTemporaryPDF(
+                document,
+                signatures: placedSignatures,
+                suggestedName: pdfURL?.deletingPathExtension().lastPathComponent ?? "signed"
+            )
             exportedURL = url
             showShare = true
             statusMessage = String(localized: "Done — choose where to save the signed PDF.")
