@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var showSignaturePad = false
     @State private var showShare = false
     @State private var exportedURL: URL?
-    @State private var statusMessage = "Откройте PDF, нарисуйте подпись и коснитесь места на странице."
+    @State private var statusMessage = String(localized: "Open a PDF, draw a signature, then tap the page to place it.")
     @State private var currentPageIndex = 0
     @State private var errorMessage: String?
     @State private var placedSignatures: [PlacedSignature] = []
@@ -42,9 +42,9 @@ struct ContentView: View {
                         .ignoresSafeArea()
                     } else {
                         ContentUnavailableView(
-                            "Нет PDF",
+                            String(localized: "No PDF"),
                             systemImage: "doc.richtext",
-                            description: Text("Нажмите «Открыть», чтобы начать.")
+                            description: Text("Tap Open to get started.")
                         )
                     }
                 }
@@ -75,8 +75,8 @@ struct ContentView: View {
                         signatureImage = image
                         if allowsMultipleSignatures {
                             statusMessage = placedSignatures.isEmpty
-                                ? "Подпись готова. Коснитесь PDF, чтобы поставить. Каждое касание добавит ещё одну."
-                                : "Подпись обновлена. Коснитесь PDF, чтобы поставить ещё одну."
+                                ? String(localized: "Signature is ready. Tap the PDF to place it. Each tap adds another.")
+                                : String(localized: "Signature updated. Tap the PDF to place another.")
                         } else if var placed = placedSignatures.first {
                             placed.image = image
                             placed.rect.size.height = placed.rect.width * image.size.height / max(image.size.width, 1)
@@ -84,9 +84,9 @@ struct ContentView: View {
                                 placed.rect = PDFSignatureService.clamp(placed.rect, to: page.bounds(for: .mediaBox))
                             }
                             placedSignatures = [placed]
-                            statusMessage = "Подпись обновлена. Перетащите пальцем или коснитесь другого места."
+                            statusMessage = String(localized: "Signature updated. Drag it or tap another spot.")
                         } else {
-                            statusMessage = "Подпись готова. Коснитесь PDF, куда её поставить."
+                            statusMessage = String(localized: "Signature is ready. Tap the PDF where you want it.")
                         }
                         showSignaturePad = false
                     },
@@ -107,7 +107,7 @@ struct ContentView: View {
                     ShareSheet(urls: [exportedURL])
                 }
             }
-            .alert("Ошибка", isPresented: Binding(
+            .alert(String(localized: "Error"), isPresented: Binding(
                 get: { errorMessage != nil },
                 set: { if !$0 { errorMessage = nil } }
             )) {
@@ -119,24 +119,24 @@ struct ContentView: View {
                 applySignatureMode(isOn)
             }
             .confirmationDialog(
-                "Подпись",
+                String(localized: "Signature"),
                 isPresented: Binding(
                     get: { menuSignatureID != nil },
                     set: { if !$0 { menuSignatureID = nil } }
                 ),
                 titleVisibility: .visible
             ) {
-                Button("Zoom") {
+                Button(String(localized: "Zoom")) {
                     let id = menuSignatureID
                     menuSignatureID = nil
                     beginZoom(id)
                 }
-                Button("Удалить", role: .destructive) {
+                Button(String(localized: "Delete"), role: .destructive) {
                     let id = menuSignatureID
                     menuSignatureID = nil
                     deleteSignature(id)
                 }
-                Button("Отмена", role: .cancel) {}
+                Button(String(localized: "Cancel"), role: .cancel) {}
             }
         }
     }
@@ -164,7 +164,7 @@ struct ContentView: View {
                 }
             Image(systemName: "plus.magnifyingglass")
                 .foregroundStyle(.secondary)
-            Button("Готово") {
+            Button("Done") {
                 zoomSignatureID = nil
             }
             .font(.subheadline.weight(.semibold))
@@ -179,22 +179,22 @@ struct ContentView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
-            OpenToolbarButton(title: "Открыть", systemImage: "doc") {
+            OpenToolbarButton(title: String(localized: "Open"), systemImage: "doc") {
                 showImporter = true
             }
             .fixedSize()
         }
         ToolbarItem(placement: .topBarTrailing) {
-            Button("Настройки", systemImage: "gearshape") {
+            Button("Settings", systemImage: "gearshape") {
                 showSettings = true
             }
         }
         ToolbarItemGroup(placement: .topBarTrailing) {
-            Button("Подпись", systemImage: "signature") {
+            Button("Signature", systemImage: "signature") {
                 showSignaturePad = true
             }
             .disabled(document == nil)
-            Button("Сохранить", systemImage: "square.and.arrow.down") {
+            Button("Save", systemImage: "square.and.arrow.down") {
                 exportPDF()
             }
             .disabled(document == nil)
@@ -212,7 +212,7 @@ struct ContentView: View {
             do {
                 let data = try Data(contentsOf: url)
                 guard let doc = PDFDocument(data: data) else {
-                    errorMessage = "Не удалось прочитать PDF."
+                    errorMessage = String(localized: "Couldn’t read the PDF.")
                     return
                 }
                 pdfURL = url
@@ -224,7 +224,7 @@ struct ContentView: View {
                 zoomSignatureID = nil
                 allowsMultipleSignatures = false
                 PDFSignatureService.clearLastSignatureReference()
-                statusMessage = "PDF загружен. Нарисуйте подпись, затем коснитесь места на странице."
+                statusMessage = String(localized: "PDF loaded. Draw a signature, then tap the page.")
             } catch {
                 errorMessage = error.localizedDescription
             }
@@ -234,7 +234,7 @@ struct ContentView: View {
     /// `pointInPage` is in PDF page coordinates (bottom-left origin).
     private func placeSignature(pageIndex: Int, pointInPage: CGPoint) {
         guard let document, let signatureImage else {
-            statusMessage = "Сначала нарисуйте подпись."
+            statusMessage = String(localized: "Draw a signature first.")
             showSignaturePad = true
             return
         }
@@ -257,10 +257,10 @@ struct ContentView: View {
         let placed = PlacedSignature(pageIndex: pageIndex, rect: rect, image: signatureImage)
         if allowsMultipleSignatures {
             placedSignatures.append(placed)
-            statusMessage = "Подписей: \(placedSignatures.count). Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+            statusMessage = String(localized: "Signatures: \(placedSignatures.count). Tap to add another; drag each one separately.")
         } else {
             placedSignatures = [placed]
-            statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+            statusMessage = String(localized: "Signature on page \(pageIndex + 1). Drag it or tap another spot.")
         }
     }
 
@@ -270,9 +270,9 @@ struct ContentView: View {
         placedSignatures[index].pageIndex = pageIndex
         placedSignatures[index].rect = PDFSignatureService.clamp(rect, to: page.bounds(for: .mediaBox))
         if allowsMultipleSignatures {
-            statusMessage = "Подписей: \(placedSignatures.count). Каждую можно двигать отдельно."
+            statusMessage = String(localized: "Signatures: \(placedSignatures.count). Drag each one separately.")
         } else {
-            statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+            statusMessage = String(localized: "Signature on page \(pageIndex + 1). Drag it or tap another spot.")
         }
     }
 
@@ -310,19 +310,19 @@ struct ContentView: View {
             zoomSignatureID = nil
         }
         if placedSignatures.isEmpty {
-            statusMessage = "Подпись удалена. Коснитесь PDF, чтобы поставить снова."
+            statusMessage = String(localized: "Signature removed. Tap the PDF to place it again.")
         } else if allowsMultipleSignatures {
-            statusMessage = "Подписей: \(placedSignatures.count). Коснитесь, чтобы добавить ещё."
+            statusMessage = String(localized: "Signatures: \(placedSignatures.count). Tap to add another.")
         } else {
-            statusMessage = "Подпись удалена. Коснитесь PDF, чтобы поставить снова."
+            statusMessage = String(localized: "Signature removed. Tap the PDF to place it again.")
         }
     }
 
     private func applySignatureMode(_ isOn: Bool) {
         if isOn {
             statusMessage = placedSignatures.isEmpty
-                ? "Режим нескольких подписей. Коснитесь PDF, чтобы поставить."
-                : "Режим нескольких подписей. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+                ? String(localized: "Multiple signature mode. Tap the PDF to place one.")
+                : String(localized: "Multiple signature mode. Tap to add another; drag each one separately.")
         } else {
             if placedSignatures.count > 1 {
                 let kept = Array(placedSignatures.suffix(1))
@@ -330,11 +330,11 @@ struct ContentView: View {
                     zoomSignatureID = nil
                 }
                 placedSignatures = kept
-                statusMessage = "Режим одной подписи — оставлена последняя. Перетащите или коснитесь другого места."
+                statusMessage = String(localized: "Single signature mode — kept the last one. Drag it or tap another spot.")
             } else if placedSignatures.count == 1 {
-                statusMessage = "Режим одной подписи. Перетащите пальцем или коснитесь другого места."
+                statusMessage = String(localized: "Single signature mode. Drag it or tap another spot.")
             } else {
-                statusMessage = "Режим одной подписи. Коснитесь PDF, куда поставить подпись."
+                statusMessage = String(localized: "Single signature mode. Tap the PDF to place the signature.")
             }
         }
     }
@@ -347,7 +347,7 @@ struct ContentView: View {
             let url = try PDFSignatureService.writeTemporaryPDF(document, suggestedName: pdfURL?.deletingPathExtension().lastPathComponent ?? "signed")
             exportedURL = url
             showShare = true
-            statusMessage = "Готово — выберите, куда сохранить подписанный PDF."
+            statusMessage = String(localized: "Done — choose where to save the signed PDF.")
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -421,19 +421,19 @@ private struct SettingsSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    Toggle("Несколько подписей", isOn: $allowsMultipleSignatures)
+                    Toggle("Multiple signatures", isOn: $allowsMultipleSignatures)
                         .disabled(!hasDocument)
                 } footer: {
                     Text(hasDocument
-                         ? "В этом режиме каждое касание ставит новую подпись, и каждую можно двигать отдельно."
-                         : "Сначала откройте PDF.")
+                         ? "In this mode each tap places a new signature, and you can drag each one separately."
+                         : "Open a PDF first.")
                 }
             }
-            .navigationTitle("Настройки")
+            .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Готово", action: onClose)
+                    Button("Done", action: onClose)
                 }
             }
         }

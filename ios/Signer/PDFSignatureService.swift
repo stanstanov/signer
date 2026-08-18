@@ -80,7 +80,7 @@ enum PDFSignatureService {
             throw NSError(
                 domain: "Signer",
                 code: 1,
-                userInfo: [NSLocalizedDescriptionKey: "Не удалось записать PDF."]
+                userInfo: [NSLocalizedDescriptionKey: String(localized: "Couldn’t write the PDF.")]
             )
         }
         return url

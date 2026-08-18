@@ -208,8 +208,8 @@ struct PDFTapPlaceView: UIViewRepresentable {
             overlay.signatureID = id
             overlay.isUserInteractionEnabled = true
             overlay.isExclusiveTouch = true
-            overlay.accessibilityLabel = "Подпись"
-            overlay.accessibilityHint = "Перетащите, чтобы переместить. Коснитесь для меню."
+            overlay.accessibilityLabel = String(localized: "Signature")
+            overlay.accessibilityHint = String(localized: "Drag to move. Tap for the menu.")
             let pan = UIPanGestureRecognizer(target: self, action: #selector(handleOverlayPan(_:)))
             pan.maximumNumberOfTouches = 1
             pan.delegate = self

@@ -5,6 +5,7 @@ options:
     iOS: "17.0"
   xcodeVersion: "16.0"
   createIntermediateGroups: true
+  defaultLocalization: en
 settings:
   BASE_CONFIGURATION_PLATFORM: iOS
 targets:
@@ -22,7 +23,7 @@ targets:
       INFOPLIST_KEY_UILaunchScreen_Generation: YES
       INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
       INFOPLIST_KEY_CFBundleDisplayName: Signer
-      INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription: "Сохранение подписанного PDF в Фото при необходимости."
+      INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription: "Save the signed PDF to Photos if needed."
       CODE_SIGN_STYLE: Automatic
       SWIFT_VERSION: "5.0"
       GENERATE_INFOPLIST_FILE: YES

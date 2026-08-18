@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		59A405A65FC3887B6D21FF4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3271AABEE43EFD02639EF2 /* Assets.xcassets */; };
+		A11C0C5A1C5A10C5A11C0001 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A11C0C5A1C5A10C5A11C0002 /* Localizable.xcstrings */; };
+		A11C0C5A1C5A10C5A11C0003 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A11C0C5A1C5A10C5A11C0004 /* InfoPlist.xcstrings */; };
 		8C2F843EC75C95D85AC89228 /* SignerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A7CC9E23CE4A39547286C95 /* SignerApp.swift */; };
 		8C7D7671323FE669A0B51306 /* PDFSignatureService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F80A7C5FBC19147A17614BF /* PDFSignatureService.swift */; };
 		AA49BE1F231F85CC5E26E1DD /* SignaturePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F83100894F3829328856174 /* SignaturePadView.swift */; };
@@ -20,6 +22,8 @@
 		2F80A7C5FBC19147A17614BF /* PDFSignatureService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFSignatureService.swift; sourceTree = "<group>"; };
 		2F83100894F3829328856174 /* SignaturePadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignaturePadView.swift; sourceTree = "<group>"; };
 		3F3271AABEE43EFD02639EF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A11C0C5A1C5A10C5A11C0002 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A11C0C5A1C5A10C5A11C0004 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		8A7CC9E23CE4A39547286C95 /* SignerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerApp.swift; sourceTree = "<group>"; };
 		D8573B9407C11A366598E303 /* PDFTapPlaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFTapPlaceView.swift; sourceTree = "<group>"; };
 		E65FB729799157A47A6A075A /* Signer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Signer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +42,8 @@
 			isa = PBXGroup;
 			children = (
 				3F3271AABEE43EFD02639EF2 /* Assets.xcassets */,
+				A11C0C5A1C5A10C5A11C0004 /* InfoPlist.xcstrings */,
+				A11C0C5A1C5A10C5A11C0002 /* Localizable.xcstrings */,
 				0524166BD93493B2F09A66DE /* ContentView.swift */,
 				2F80A7C5FBC19147A17614BF /* PDFSignatureService.swift */,
 				D8573B9407C11A366598E303 /* PDFTapPlaceView.swift */,
@@ -96,6 +102,12 @@
 			knownRegions = (
 				Base,
 				en,
+				ru,
+				lt,
+				es,
+				de,
+				fr,
+				pl,
 			);
 			mainGroup = AED841F401EBA60917983388;
 			minimizedProjectReferenceProxies = 1;
@@ -115,6 +127,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				59A405A65FC3887B6D21FF4E /* Assets.xcassets in Resources */,
+				A11C0C5A1C5A10C5A11C0001 /* Localizable.xcstrings in Resources */,
+				A11C0C5A1C5A10C5A11C0003 /* InfoPlist.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

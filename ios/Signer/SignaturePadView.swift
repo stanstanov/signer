@@ -24,8 +24,8 @@ struct SignaturePadSheet: View {
         NavigationStack {
             VStack(spacing: 12) {
                 Text(isShowingPreview
-                     ? "Текущая подпись. Нажмите «Очистить», чтобы нарисовать заново."
-                     : "Нарисуйте подпись пальцем")
+                     ? "Current signature. Tap Clear to draw it again."
+                     : "Draw your signature with your finger")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -43,7 +43,7 @@ struct SignaturePadSheet: View {
                     .padding(.horizontal)
 
                 HStack(spacing: 12) {
-                    Button("Очистить") {
+                    Button("Clear") {
                         strokes = []
                         currentStroke = []
                         previewImage = nil
@@ -59,14 +59,14 @@ struct SignaturePadSheet: View {
                 Spacer(minLength: 0)
             }
             .padding(.top, 8)
-            .navigationTitle("Подпись")
+            .navigationTitle("Signature")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Отмена", action: onCancel)
+                    Button("Cancel", action: onCancel)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Готово") {
+                    Button("Done") {
                         if hasDrawableInk, let image = renderSignatureImage() {
                             onSave(image)
                         } else if let previewImage {
@@ -92,7 +92,7 @@ struct SignaturePadSheet: View {
                 .scaledToFit()
                 .padding(12)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .accessibilityLabel("Превью подписи")
+                .accessibilityLabel(String(localized: "Signature preview"))
         } else {
             SignatureCanvas(
                 strokes: $strokes,
@@ -130,7 +130,7 @@ struct SignaturePadSheet: View {
             }
 
             ColorPicker(
-                "Свой цвет",
+                String(localized: "Custom color"),
                 selection: Binding(
                     get: { inkColor },
                     set: { newColor in
@@ -144,7 +144,7 @@ struct SignaturePadSheet: View {
             .frame(width: 28, height: 28)
         }
         .accessibilityElement(children: .contain)
-        .accessibilityLabel("Цвет подписи")
+        .accessibilityLabel(String(localized: "Signature color"))
     }
 
     private func renderSignatureImage() -> UIImage? {
@@ -198,12 +198,12 @@ private enum SignatureInk: String, CaseIterable, Identifiable {
 
     var accessibilityName: String {
         switch self {
-        case .black: return "Чёрный"
-        case .gray: return "Серый"
-        case .blue: return "Синий"
-        case .navy: return "Тёмно-синий"
-        case .red: return "Красный"
-        case .green: return "Зелёный"
+        case .black: return String(localized: "Black")
+        case .gray: return String(localized: "Gray")
+        case .blue: return String(localized: "Blue")
+        case .navy: return String(localized: "Navy")
+        case .red: return String(localized: "Red")
+        case .green: return String(localized: "Green")
         }
     }
 }
