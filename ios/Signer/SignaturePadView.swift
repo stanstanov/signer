@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SignaturePadSheet: View {
+    var existingImage: UIImage?
     var onSave: (UIImage) -> Void
     var onCancel: () -> Void
 
@@ -9,39 +10,49 @@ struct SignaturePadSheet: View {
     @State private var canvasSize: CGSize = CGSize(width: 350, height: 220)
     @State private var inkColor: Color = SignatureInk.black.color
     @State private var selectedSwatch: SignatureInk? = .black
+    @State private var previewImage: UIImage?
+
+    private var isShowingPreview: Bool {
+        previewImage != nil && strokes.isEmpty && currentStroke.isEmpty
+    }
+
+    private var hasDrawableInk: Bool {
+        !strokes.isEmpty || !currentStroke.isEmpty
+    }
 
     var body: some View {
         NavigationStack {
             VStack(spacing: 12) {
-                Text("Нарисуйте подпись пальцем")
+                Text(isShowingPreview
+                     ? "Текущая подпись. Нажмите «Очистить», чтобы нарисовать заново."
+                     : "Нарисуйте подпись пальцем")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
 
-                SignatureCanvas(
-                    strokes: $strokes,
-                    currentStroke: $currentStroke,
-                    canvasSize: $canvasSize,
-                    inkColor: inkColor
-                )
-                .frame(maxWidth: .infinity)
-                .frame(height: 220)
-                .background(Color.white)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .strokeBorder(Color.secondary.opacity(0.35), lineWidth: 1)
-                )
-                .padding(.horizontal)
+                signatureEditor
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 220)
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 12)
+                            .strokeBorder(Color.secondary.opacity(0.35), lineWidth: 1)
+                    )
+                    .padding(.horizontal)
 
                 HStack(spacing: 12) {
                     Button("Очистить") {
                         strokes = []
                         currentStroke = []
+                        previewImage = nil
                     }
+                    .disabled(!isShowingPreview && !hasDrawableInk)
                     Spacer(minLength: 8)
                     colorPickerRow
+                        .opacity(isShowingPreview ? 0.45 : 1)
+                        .allowsHitTesting(!isShowingPreview)
                 }
                 .padding(.horizontal)
 
@@ -56,13 +67,39 @@ struct SignaturePadSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Готово") {
-                        if let image = renderSignatureImage() {
+                        if hasDrawableInk, let image = renderSignatureImage() {
                             onSave(image)
+                        } else if let previewImage {
+                            onSave(previewImage)
                         }
                     }
-                    .disabled(strokes.isEmpty && currentStroke.isEmpty)
+                    .disabled(!isShowingPreview && !hasDrawableInk)
                 }
             }
+            .onAppear {
+                if previewImage == nil {
+                    previewImage = existingImage
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var signatureEditor: some View {
+        if isShowingPreview, let previewImage {
+            Image(uiImage: previewImage)
+                .resizable()
+                .scaledToFit()
+                .padding(12)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityLabel("Превью подписи")
+        } else {
+            SignatureCanvas(
+                strokes: $strokes,
+                currentStroke: $currentStroke,
+                canvasSize: $canvasSize,
+                inkColor: inkColor
+            )
         }
     }
 

@@ -51,6 +51,7 @@ struct ContentView: View {
             }
             .sheet(isPresented: $showSignaturePad) {
                 SignaturePadSheet(
+                    existingImage: signatureImage,
                     onSave: { image in
                         signatureImage = image
                         if allowsMultipleSignatures {
@@ -103,24 +104,6 @@ struct ContentView: View {
             Toggle("Несколько подписей", isOn: $allowsMultipleSignatures)
                 .font(.subheadline)
                 .disabled(document == nil)
-
-            if signatureImage != nil {
-                HStack(spacing: 12) {
-                    Text("Превью подписи")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Image(uiImage: signatureImage!)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 36)
-                        .padding(4)
-                        .background(Color(.secondarySystemBackground))
-                        .clipShape(RoundedRectangle(cornerRadius: 6))
-                    Spacer()
-                    Button("Перерисовать") { showSignaturePad = true }
-                        .font(.caption)
-                }
-            }
         }
         .padding(12)
         .background(.bar)
