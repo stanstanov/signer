@@ -16,16 +16,17 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -39,6 +40,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
@@ -53,7 +55,6 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import lt.turron.signer.InkSwatches
 import lt.turron.signer.R
-import kotlin.math.max
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,7 +70,7 @@ fun SignaturePadSheet(
     var ink by remember { mutableStateOf(InkSwatches.first().first) }
     var selected by remember { mutableStateOf(0) }
     var preview by remember { mutableStateOf(existing) }
-    var hue by remember { mutableStateOf(0f) }
+    var showColorPicker by remember { mutableStateOf(false) }
     val showingPreview = preview != null && strokes.isEmpty() && current.isEmpty()
     val hasInk = strokes.isNotEmpty() || current.isNotEmpty()
 
@@ -126,8 +127,12 @@ fun SignaturePadSheet(
                     )
                 }
             }
+            val colorRowLabel = stringResource(R.string.a11y_signature_color)
             Row(
-                Modifier.fillMaxWidth().padding(16.dp),
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .semantics { contentDescription = colorRowLabel },
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 TextButton(
@@ -161,22 +166,188 @@ fun SignaturePadSheet(
                             },
                     )
                 }
-            }
-            if (!showingPreview) {
-                Text(stringResource(R.string.color_custom), Modifier.padding(horizontal = 16.dp), style = MaterialTheme.typography.labelMedium)
-                Slider(
-                    value = hue,
-                    onValueChange = {
-                        hue = it
-                        selected = -1
-                        ink = Color.hsv(it, 0.85f, 0.75f)
-                    },
-                    valueRange = 0f..360f,
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                ColorPickerButton(
+                    color = ink,
+                    selected = selected < 0 && !showingPreview,
+                    enabled = !showingPreview,
+                    onClick = { showColorPicker = true },
                 )
             }
         }
     }
+    if (showColorPicker) {
+        ColorPickerDialog(
+            color = ink,
+            onConfirm = {
+                ink = it
+                selected = -1
+                showColorPicker = false
+            },
+            onDismiss = { showColorPicker = false },
+        )
+    }
+}
+
+private val SpectrumColors = listOf(
+    Color.Red,
+    Color.Yellow,
+    Color.Green,
+    Color.Cyan,
+    Color.Blue,
+    Color.Magenta,
+    Color.Red,
+)
+
+@Composable
+private fun ColorPickerButton(
+    color: Color,
+    selected: Boolean,
+    enabled: Boolean,
+    onClick: () -> Unit,
+) {
+    val label = stringResource(R.string.color_custom)
+    Box(
+        Modifier
+            .padding(start = 6.dp, top = 4.dp, bottom = 4.dp)
+            .size(28.dp)
+            .clip(CircleShape)
+            .semantics { contentDescription = label }
+            .clickable(enabled = enabled, onClick = onClick),
+    ) {
+        Canvas(Modifier.fillMaxSize()) {
+            drawCircle(Brush.sweepGradient(SpectrumColors))
+            drawCircle(Color.White, radius = size.minDimension / 2f - 5.dp.toPx())
+            drawCircle(color, radius = size.minDimension / 2f - 7.dp.toPx())
+        }
+        Box(
+            Modifier
+                .matchParentSize()
+                .border(
+                    if (selected) 2.5.dp else 1.dp,
+                    if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline.copy(alpha = 0.35f),
+                    CircleShape,
+                ),
+        )
+    }
+}
+
+@Composable
+private fun ColorPickerDialog(
+    color: Color,
+    onConfirm: (Color) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    val start = remember(color) { color.toHsv() }
+    var hue by remember { mutableStateOf(start[0]) }
+    var saturation by remember { mutableStateOf(start[1]) }
+    var value by remember { mutableStateOf(start[2]) }
+    val current = Color.hsv(hue, saturation.coerceIn(0f, 1f), value.coerceIn(0f, 1f))
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.color_custom)) },
+        text = {
+            Column {
+                SaturationValueBox(
+                    hue = hue,
+                    saturation = saturation,
+                    value = value,
+                    onChange = { sat, v ->
+                        saturation = sat
+                        value = v
+                    },
+                )
+                Spacer(Modifier.height(16.dp))
+                HueBar(hue = hue, onChange = { hue = it })
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm(current) }) { Text(stringResource(R.string.action_done)) }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.action_cancel)) }
+        },
+    )
+}
+
+@Composable
+private fun SaturationValueBox(
+    hue: Float,
+    saturation: Float,
+    value: Float,
+    onChange: (Float, Float) -> Unit,
+) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .height(180.dp)
+            .clip(RoundedCornerShape(12.dp))
+            .pointerInput(hue) {
+                fun emit(position: Offset) {
+                    val sat = (position.x / size.width).coerceIn(0f, 1f)
+                    val v = 1f - (position.y / size.height).coerceIn(0f, 1f)
+                    onChange(sat, v)
+                }
+                awaitEachGesture {
+                    val down = awaitFirstDown()
+                    down.consume()
+                    emit(down.position)
+                    drag(down.id) { change ->
+                        change.consume()
+                        emit(change.position)
+                    }
+                }
+            },
+    ) {
+        Canvas(Modifier.fillMaxSize()) {
+            drawRect(Brush.horizontalGradient(listOf(Color.White, Color.hsv(hue, 1f, 1f))))
+            drawRect(Brush.verticalGradient(listOf(Color.Transparent, Color.Black)))
+        }
+        Canvas(Modifier.fillMaxSize()) {
+            val cx = saturation * size.width
+            val cy = (1f - value) * size.height
+            drawCircle(Color.White, radius = 8.dp.toPx(), center = Offset(cx, cy))
+            drawCircle(Color.hsv(hue, saturation, value), radius = 5.dp.toPx(), center = Offset(cx, cy))
+        }
+    }
+}
+
+@Composable
+private fun HueBar(hue: Float, onChange: (Float) -> Unit) {
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .height(28.dp)
+            .clip(RoundedCornerShape(14.dp))
+            .pointerInput(Unit) {
+                fun emit(position: Offset) {
+                    onChange((position.x / size.width).coerceIn(0f, 1f) * 360f)
+                }
+                awaitEachGesture {
+                    val down = awaitFirstDown()
+                    down.consume()
+                    emit(down.position)
+                    drag(down.id) { change ->
+                        change.consume()
+                        emit(change.position)
+                    }
+                }
+            },
+    ) {
+        Canvas(Modifier.fillMaxSize()) {
+            drawRect(Brush.horizontalGradient(SpectrumColors))
+        }
+        Canvas(Modifier.fillMaxSize()) {
+            val cx = (hue / 360f) * size.width
+            drawCircle(Color.White, radius = 8.dp.toPx(), center = Offset(cx, size.height / 2f))
+            drawCircle(Color.hsv(hue, 1f, 1f), radius = 5.dp.toPx(), center = Offset(cx, size.height / 2f))
+        }
+    }
+}
+
+private fun Color.toHsv(): FloatArray {
+    val hsv = FloatArray(3)
+    android.graphics.Color.colorToHSV(toArgb(), hsv)
+    return hsv
 }
 
 @Composable
