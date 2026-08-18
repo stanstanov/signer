@@ -5,6 +5,8 @@
     <string name="action_settings">Ustawienia</string>
     <string name="action_signature">Podpis</string>
     <string name="action_save">Zapisz</string>
+    <string name="action_save_to_files">Zapisz w Plikach</string>
+    <string name="action_share">Udostępnij</string>
     <string name="action_done">Gotowe</string>
     <string name="action_cancel">Anuluj</string>
     <string name="action_zoom">Powiększenie</string>

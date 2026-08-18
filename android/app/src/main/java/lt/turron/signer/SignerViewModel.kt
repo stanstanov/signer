@@ -331,6 +331,25 @@ class SignerViewModel(application: Application) : AndroidViewModel(application) 
         _state.update { it.copy(exportedFile = null) }
     }
 
+    fun writeExportedTo(uri: Uri) {
+        val file = _state.value.exportedFile ?: return
+        val context = getApplication<Application>()
+        viewModelScope.launch {
+            try {
+                withContext(Dispatchers.IO) {
+                    context.contentResolver.openOutputStream(uri)?.use { output ->
+                        file.inputStream().use { input -> input.copyTo(output) }
+                    } ?: error(context.getString(R.string.error_write_pdf))
+                }
+                _state.update { it.copy(exportedFile = null) }
+            } catch (e: Exception) {
+                _state.update {
+                    it.copy(error = e.localizedMessage ?: context.getString(R.string.error_write_pdf))
+                }
+            }
+        }
+    }
+
     override fun onCleared() {
         pageRenderer?.close()
         super.onCleared()

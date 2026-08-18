@@ -103,17 +103,8 @@ fun MainScreen(viewModel: SignerViewModel) {
     val openPdf = rememberLauncherForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) viewModel.openPdf(uri)
     }
-
-    LaunchedEffect(state.exportedFile) {
-        val file = state.exportedFile ?: return@LaunchedEffect
-        val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
-        val intent = Intent(Intent.ACTION_SEND).apply {
-            type = "application/pdf"
-            putExtra(Intent.EXTRA_STREAM, uri)
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        }
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.action_save)))
-        viewModel.consumeExport()
+    val savePdf = rememberLauncherForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
+        if (uri != null) viewModel.writeExportedTo(uri)
     }
 
     Scaffold(
@@ -211,6 +202,37 @@ fun MainScreen(viewModel: SignerViewModel) {
             hasDocument = state.hasDocument,
             onChange = viewModel::setMultiple,
             onClose = { showSettings = false },
+        )
+    }
+    state.exportedFile?.let { file ->
+        AlertDialog(
+            onDismissRequest = { viewModel.consumeExport() },
+            title = { Text(stringResource(R.string.action_save)) },
+            text = { Text(stringResource(R.string.status_exported)) },
+            confirmButton = {
+                TextButton(onClick = { savePdf.launch(file.name) }) {
+                    Text(stringResource(R.string.action_save_to_files))
+                }
+            },
+            dismissButton = {
+                Row {
+                    TextButton(
+                        onClick = {
+                            val uri = FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
+                            val intent = Intent(Intent.ACTION_SEND).apply {
+                                type = "application/pdf"
+                                putExtra(Intent.EXTRA_STREAM, uri)
+                                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                            }
+                            context.startActivity(Intent.createChooser(intent, context.getString(R.string.action_share)))
+                            viewModel.consumeExport()
+                        },
+                    ) { Text(stringResource(R.string.action_share)) }
+                    TextButton(onClick = { viewModel.consumeExport() }) {
+                        Text(stringResource(R.string.action_cancel))
+                    }
+                }
+            },
         )
     }
     if (state.menuSignatureId != null) {

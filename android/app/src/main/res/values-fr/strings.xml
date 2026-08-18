@@ -5,6 +5,8 @@
     <string name="action_settings">Réglages</string>
     <string name="action_signature">Signature</string>
     <string name="action_save">Enregistrer</string>
+    <string name="action_save_to_files">Enregistrer dans Fichiers</string>
+    <string name="action_share">Partager</string>
     <string name="action_done">Terminé</string>
     <string name="action_cancel">Annuler</string>
     <string name="action_zoom">Zoom</string>

@@ -5,6 +5,8 @@
     <string name="action_settings">Nustatymai</string>
     <string name="action_signature">Parašas</string>
     <string name="action_save">Išsaugoti</string>
+    <string name="action_save_to_files">Išsaugoti failuose</string>
+    <string name="action_share">Bendrinti</string>
     <string name="action_done">Atlikta</string>
     <string name="action_cancel">Atšaukti</string>
     <string name="action_zoom">Mastelis</string>
