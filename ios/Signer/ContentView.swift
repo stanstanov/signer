@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var errorMessage: String?
     @State private var placedSignatures: [PlacedSignature] = []
     @State private var allowsMultipleSignatures = false
+    @State private var showSettings = false
 
     var body: some View {
         NavigationStack {
@@ -75,6 +76,14 @@ struct ContentView: View {
                 )
                 .presentationDetents([.medium, .large])
             }
+            .sheet(isPresented: $showSettings) {
+                SettingsSheet(
+                    allowsMultipleSignatures: $allowsMultipleSignatures,
+                    hasDocument: document != nil,
+                    onClose: { showSettings = false }
+                )
+                .presentationDetents([.medium])
+            }
             .sheet(isPresented: $showShare) {
                 if let exportedURL {
                     ShareSheet(urls: [exportedURL])
@@ -95,30 +104,35 @@ struct ContentView: View {
     }
 
     private var statusBar: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text(statusMessage)
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            Toggle("Несколько подписей", isOn: $allowsMultipleSignatures)
-                .font(.subheadline)
-                .disabled(document == nil)
-        }
-        .padding(12)
-        .background(.bar)
+        Text(statusMessage)
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(12)
+            .background(.bar)
     }
 
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
-            Button("Открыть PDF") { showImporter = true }
+            Button("Открыть PDF", systemImage: "doc") {
+                showImporter = true
+            }
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button("Настройки", systemImage: "gearshape") {
+                showSettings = true
+            }
         }
         ToolbarItemGroup(placement: .topBarTrailing) {
-            Button("Подпись") { showSignaturePad = true }
-                .disabled(document == nil)
-            Button("Сохранить") { exportPDF() }
-                .disabled(document == nil)
+            Button("Подпись", systemImage: "signature") {
+                showSignaturePad = true
+            }
+            .disabled(document == nil)
+            Button("Сохранить", systemImage: "square.and.arrow.down") {
+                exportPDF()
+            }
+            .disabled(document == nil)
         }
     }
 
@@ -223,6 +237,36 @@ struct ContentView: View {
             statusMessage = "Готово — выберите, куда сохранить подписанный PDF."
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+}
+
+// MARK: - Settings
+
+private struct SettingsSheet: View {
+    @Binding var allowsMultipleSignatures: Bool
+    var hasDocument: Bool
+    var onClose: () -> Void
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    Toggle("Несколько подписей", isOn: $allowsMultipleSignatures)
+                        .disabled(!hasDocument)
+                } footer: {
+                    Text(hasDocument
+                         ? "В этом режиме каждое касание ставит новую подпись, и каждую можно двигать отдельно."
+                         : "Сначала откройте PDF.")
+                }
+            }
+            .navigationTitle("Настройки")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Готово", action: onClose)
+                }
+            }
         }
     }
 }
