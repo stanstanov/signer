@@ -44,7 +44,7 @@ struct ContentView: View {
                         ContentUnavailableView(
                             "Нет PDF",
                             systemImage: "doc.richtext",
-                            description: Text("Нажмите «Открыть PDF», чтобы начать.")
+                            description: Text("Нажмите «Открыть», чтобы начать.")
                         )
                     }
                 }
@@ -56,7 +56,7 @@ struct ContentView: View {
                     statusBar
                 }
             }
-            .navigationTitle("Signer")
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
             .toolbarBackground(.hidden, for: .navigationBar)
@@ -179,9 +179,10 @@ struct ContentView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarLeading) {
-            Button("Открыть PDF", systemImage: "doc") {
+            OpenToolbarButton(title: "Открыть", systemImage: "doc") {
                 showImporter = true
             }
+            .fixedSize()
         }
         ToolbarItem(placement: .topBarTrailing) {
             Button("Настройки", systemImage: "gearshape") {
@@ -350,6 +351,45 @@ struct ContentView: View {
         } catch {
             errorMessage = error.localizedDescription
         }
+    }
+}
+
+private struct OpenToolbarButton: UIViewRepresentable {
+    var title: String
+    var systemImage: String
+    var action: () -> Void
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(action: action)
+    }
+
+    func makeUIView(context: Context) -> UIButton {
+        var config = UIButton.Configuration.plain()
+        config.title = title
+        config.image = UIImage(systemName: systemImage)
+        config.imagePadding = 6
+        config.imagePlacement = .leading
+        config.contentInsets = NSDirectionalEdgeInsets(top: 4, leading: 10, bottom: 4, trailing: 8)
+        let button = UIButton(configuration: config)
+        button.addTarget(context.coordinator, action: #selector(Coordinator.tap), for: .touchUpInside)
+        button.setContentHuggingPriority(.required, for: .horizontal)
+        button.setContentCompressionResistancePriority(.required, for: .horizontal)
+        button.accessibilityLabel = title
+        return button
+    }
+
+    func updateUIView(_ button: UIButton, context: Context) {
+        context.coordinator.action = action
+        var config = button.configuration ?? .plain()
+        config.title = title
+        config.image = UIImage(systemName: systemImage)
+        button.configuration = config
+    }
+
+    final class Coordinator: NSObject {
+        var action: () -> Void
+        init(action: @escaping () -> Void) { self.action = action }
+        @objc func tap() { action() }
     }
 }
 
