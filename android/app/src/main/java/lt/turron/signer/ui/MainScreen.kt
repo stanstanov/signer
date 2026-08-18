@@ -7,12 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
 import androidx.compose.foundation.gestures.drag
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -73,6 +70,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.changedToUpIgnoreConsumed
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.layout.ContentScale
@@ -579,28 +577,38 @@ private fun PdfPageBox(
     var size by remember { mutableStateOf(IntSize.Zero) }
     val scaleX = if (size.width == 0) 1f else size.width / pageWidthPt
     val scaleY = if (size.height == 0) 1f else size.height / pageHeightPt
-    val interactionSource = remember { MutableInteractionSource() }
-    var press by remember { mutableStateOf(Offset.Zero) }
-    LaunchedEffect(interactionSource) {
-        interactionSource.interactions.collect { interaction ->
-            if (interaction is PressInteraction.Press) {
-                press = interaction.pressPosition
-            }
-        }
-    }
     Box(
         Modifier
             .fillMaxWidth()
             .aspectRatio((pageWidthPt / pageHeightPt).coerceAtLeast(0.01f))
             .background(Color.White)
             .onSizeChanged { size = it }
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                enabled = canPlace,
-            ) {
-                if (size.width == 0 || size.height == 0) return@clickable
-                onPlace(press.x / scaleX, pageHeightPt - press.y / scaleY)
+            .pointerInput(pageWidthPt, pageHeightPt, canPlace) {
+                if (!canPlace) return@pointerInput
+                val slop = viewConfiguration.touchSlop
+                awaitEachGesture {
+                    val down = awaitFirstDown(
+                        requireUnconsumed = true,
+                        pass = PointerEventPass.Final,
+                    )
+                    val start = down.position
+                    var moved = false
+                    while (true) {
+                        val event = awaitPointerEvent(PointerEventPass.Final)
+                        val change = event.changes.firstOrNull { it.id == down.id } ?: break
+                        if ((change.position - start).getDistance() > slop) moved = true
+                        if (change.changedToUpIgnoreConsumed()) {
+                            val box = this.size
+                            if (!moved && box.width > 0 && box.height > 0) {
+                                val sx = box.width / pageWidthPt
+                                val sy = box.height / pageHeightPt
+                                onPlace(start.x / sx, pageHeightPt - start.y / sy)
+                            }
+                            break
+                        }
+                        if (!change.pressed) break
+                    }
+                }
             },
     ) {
         pageBitmap?.let { bitmap ->
@@ -660,7 +668,7 @@ private fun SignatureStamp(
                     var total = Offset.Zero
                     var moved = false
                     val slop = viewConfiguration.touchSlop
-                    val finished = drag(down.id) { change ->
+                    drag(down.id) { change ->
                         total += change.positionChange()
                         change.consume()
                         if (!moved && total.getDistance() > slop) {
@@ -676,10 +684,8 @@ private fun SignatureStamp(
                         onMove(signature.id, newLeft, newBottom, signature.width, signature.height)
                         onDragHaptic()
                         drag = Offset.Zero
-                    } else if (finished) {
-                        onTap()
                     } else {
-                        drag = Offset.Zero
+                        onTap()
                     }
                 }
             },
