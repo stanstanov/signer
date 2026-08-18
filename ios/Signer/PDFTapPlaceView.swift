@@ -23,6 +23,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
     var placedSignatures: [PlacedSignature]
     var onPlace: (_ pageIndex: Int, _ pointInPage: CGPoint) -> Void
     var onDragEnd: (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void
+    var onSignatureTap: (_ id: UUID) -> Void
 
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
@@ -79,6 +80,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
         context.coordinator.hasSignature = hasSignature
         context.coordinator.onPlace = onPlace
         context.coordinator.onDragEnd = onDragEnd
+        context.coordinator.onSignatureTap = onSignatureTap
         context.coordinator.currentPageIndex = $currentPageIndex
         context.coordinator.placedSignatures = placedSignatures
         context.coordinator.pdfView = pdfView
@@ -103,7 +105,8 @@ struct PDFTapPlaceView: UIViewRepresentable {
             hasSignature: hasSignature,
             placedSignatures: placedSignatures,
             onPlace: onPlace,
-            onDragEnd: onDragEnd
+            onDragEnd: onDragEnd,
+            onSignatureTap: onSignatureTap
         )
     }
 
@@ -113,6 +116,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
         var placedSignatures: [PlacedSignature]
         var onPlace: (_ pageIndex: Int, _ pointInPage: CGPoint) -> Void
         var onDragEnd: (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void
+        var onSignatureTap: (_ id: UUID) -> Void
         weak var pdfView: PDFView?
         var draggingID: UUID?
 
@@ -124,13 +128,15 @@ struct PDFTapPlaceView: UIViewRepresentable {
             hasSignature: Bool,
             placedSignatures: [PlacedSignature],
             onPlace: @escaping (_ pageIndex: Int, _ pointInPage: CGPoint) -> Void,
-            onDragEnd: @escaping (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void
+            onDragEnd: @escaping (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void,
+            onSignatureTap: @escaping (_ id: UUID) -> Void
         ) {
             self.currentPageIndex = currentPageIndex
             self.hasSignature = hasSignature
             self.placedSignatures = placedSignatures
             self.onPlace = onPlace
             self.onDragEnd = onDragEnd
+            self.onSignatureTap = onSignatureTap
             super.init()
             haptics.prepare()
         }
@@ -203,11 +209,15 @@ struct PDFTapPlaceView: UIViewRepresentable {
             overlay.isUserInteractionEnabled = true
             overlay.isExclusiveTouch = true
             overlay.accessibilityLabel = "Подпись"
-            overlay.accessibilityHint = "Перетащите, чтобы переместить"
+            overlay.accessibilityHint = "Перетащите, чтобы переместить. Коснитесь для меню."
             let pan = UIPanGestureRecognizer(target: self, action: #selector(handleOverlayPan(_:)))
             pan.maximumNumberOfTouches = 1
             pan.delegate = self
             overlay.addGestureRecognizer(pan)
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap(_:)))
+            tap.numberOfTapsRequired = 1
+            tap.delegate = self
+            overlay.addGestureRecognizer(tap)
             overlays[id] = overlay
             return overlay
         }
@@ -228,6 +238,12 @@ struct PDFTapPlaceView: UIViewRepresentable {
             guard index != NSNotFound else { return }
             playHaptic()
             onPlace(index, pagePoint)
+        }
+
+        @objc func handleOverlayTap(_ gesture: UITapGestureRecognizer) {
+            guard let overlay = gesture.view as? SignatureOverlayView else { return }
+            playHaptic()
+            onSignatureTap(overlay.signatureID)
         }
 
         @objc func handleOverlayPan(_ gesture: UIPanGestureRecognizer) {
@@ -307,7 +323,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
         }
 
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-            if gestureRecognizer is UITapGestureRecognizer {
+            if gestureRecognizer.view is PDFView, gestureRecognizer is UITapGestureRecognizer {
                 if let view = touch.view, overlays.values.contains(where: { view === $0 || view.isDescendant(of: $0) }) {
                     return false
                 }

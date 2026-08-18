@@ -17,6 +17,10 @@ struct ContentView: View {
     @State private var placedSignatures: [PlacedSignature] = []
     @State private var allowsMultipleSignatures = false
     @State private var showSettings = false
+    @State private var menuSignatureID: UUID?
+    @State private var zoomSignatureID: UUID?
+    @State private var zoomBaseRect: CGRect = .zero
+    @State private var zoomScale: Double = 1
 
     var body: some View {
         NavigationStack {
@@ -28,8 +32,12 @@ struct ContentView: View {
                             currentPageIndex: $currentPageIndex,
                             hasSignature: signatureImage != nil,
                             placedSignatures: placedSignatures,
-                            onPlace: placeSignature,
-                            onDragEnd: moveSignature
+                        onPlace: placeSignature,
+                        onDragEnd: moveSignature,
+                        onSignatureTap: { id in
+                            zoomSignatureID = nil
+                            menuSignatureID = id
+                        }
                         )
                         .ignoresSafeArea()
                     } else {
@@ -42,7 +50,11 @@ struct ContentView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
 
-                statusBar
+                if zoomSignatureID != nil {
+                    zoomPanel
+                } else {
+                    statusBar
+                }
             }
             .navigationTitle("Signer")
             .navigationBarTitleDisplayMode(.inline)
@@ -106,6 +118,26 @@ struct ContentView: View {
             .onChange(of: allowsMultipleSignatures) { _, isOn in
                 applySignatureMode(isOn)
             }
+            .confirmationDialog(
+                "Подпись",
+                isPresented: Binding(
+                    get: { menuSignatureID != nil },
+                    set: { if !$0 { menuSignatureID = nil } }
+                ),
+                titleVisibility: .visible
+            ) {
+                Button("Zoom") {
+                    let id = menuSignatureID
+                    menuSignatureID = nil
+                    beginZoom(id)
+                }
+                Button("Удалить", role: .destructive) {
+                    let id = menuSignatureID
+                    menuSignatureID = nil
+                    deleteSignature(id)
+                }
+                Button("Отмена", role: .cancel) {}
+            }
         }
     }
 
@@ -120,6 +152,28 @@ struct ContentView: View {
             .padding(.horizontal, 16)
             .padding(.bottom, 10)
             .animation(nil, value: statusMessage)
+    }
+
+    private var zoomPanel: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "minus.magnifyingglass")
+                .foregroundStyle(.secondary)
+            Slider(value: $zoomScale, in: 0.5...2.5)
+                .onChange(of: zoomScale) { _, scale in
+                    applyZoom(CGFloat(scale))
+                }
+            Image(systemName: "plus.magnifyingglass")
+                .foregroundStyle(.secondary)
+            Button("Готово") {
+                zoomSignatureID = nil
+            }
+            .font(.subheadline.weight(.semibold))
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .modifier(GlassPanelBackground())
+        .padding(.horizontal, 16)
+        .padding(.bottom, 10)
     }
 
     @ToolbarContentBuilder
@@ -165,6 +219,8 @@ struct ContentView: View {
                 currentPageIndex = 0
                 signatureImage = nil
                 placedSignatures = []
+                menuSignatureID = nil
+                zoomSignatureID = nil
                 allowsMultipleSignatures = false
                 PDFSignatureService.clearLastSignatureReference()
                 statusMessage = "PDF загружен. Нарисуйте подпись, затем коснитесь места на странице."
@@ -219,6 +275,48 @@ struct ContentView: View {
         }
     }
 
+    private func beginZoom(_ id: UUID?) {
+        guard let id,
+              let placed = placedSignatures.first(where: { $0.id == id }) else { return }
+        zoomBaseRect = placed.rect
+        zoomScale = 1
+        zoomSignatureID = id
+    }
+
+    private func applyZoom(_ scale: CGFloat) {
+        guard let id = zoomSignatureID,
+              let index = placedSignatures.firstIndex(where: { $0.id == id }),
+              let document,
+              let page = document.page(at: placedSignatures[index].pageIndex) else { return }
+
+        let base = zoomBaseRect
+        let center = CGPoint(x: base.midX, y: base.midY)
+        let size = CGSize(width: base.width * scale, height: base.height * scale)
+        var rect = CGRect(
+            x: center.x - size.width / 2,
+            y: center.y - size.height / 2,
+            width: size.width,
+            height: size.height
+        )
+        rect = PDFSignatureService.clamp(rect, to: page.bounds(for: .mediaBox))
+        placedSignatures[index].rect = rect
+    }
+
+    private func deleteSignature(_ id: UUID?) {
+        guard let id else { return }
+        placedSignatures.removeAll { $0.id == id }
+        if zoomSignatureID == id {
+            zoomSignatureID = nil
+        }
+        if placedSignatures.isEmpty {
+            statusMessage = "Подпись удалена. Коснитесь PDF, чтобы поставить снова."
+        } else if allowsMultipleSignatures {
+            statusMessage = "Подписей: \(placedSignatures.count). Коснитесь, чтобы добавить ещё."
+        } else {
+            statusMessage = "Подпись удалена. Коснитесь PDF, чтобы поставить снова."
+        }
+    }
+
     private func applySignatureMode(_ isOn: Bool) {
         if isOn {
             statusMessage = placedSignatures.isEmpty
@@ -226,7 +324,11 @@ struct ContentView: View {
                 : "Режим нескольких подписей. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
         } else {
             if placedSignatures.count > 1 {
-                placedSignatures = Array(placedSignatures.suffix(1))
+                let kept = Array(placedSignatures.suffix(1))
+                if let zoomID = zoomSignatureID, kept.first?.id != zoomID {
+                    zoomSignatureID = nil
+                }
+                placedSignatures = kept
                 statusMessage = "Режим одной подписи — оставлена последняя. Перетащите или коснитесь другого места."
             } else if placedSignatures.count == 1 {
                 statusMessage = "Режим одной подписи. Перетащите пальцем или коснитесь другого места."
