@@ -117,6 +117,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
         var draggingID: UUID?
 
         private var overlays: [UUID: SignatureOverlayView] = [:]
+        private let haptics = UIImpactFeedbackGenerator(style: .light)
 
         init(
             currentPageIndex: Binding<Int>,
@@ -130,6 +131,8 @@ struct PDFTapPlaceView: UIViewRepresentable {
             self.placedSignatures = placedSignatures
             self.onPlace = onPlace
             self.onDragEnd = onDragEnd
+            super.init()
+            haptics.prepare()
         }
 
         @objc func pageChanged(_ note: Notification) {
@@ -223,6 +226,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
 
             let index = document.index(for: page)
             guard index != NSNotFound else { return }
+            playHaptic()
             onPlace(index, pagePoint)
         }
 
@@ -236,6 +240,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
                 draggingID = overlay.signatureID
                 overlay.setDragging(true)
                 overlay.superview?.bringSubviewToFront(overlay)
+                playHaptic()
                 if let scroll = findScrollView(in: pdfView) {
                     scroll.setContentOffset(scroll.contentOffset, animated: false)
                     scroll.isScrollEnabled = false
@@ -249,7 +254,14 @@ struct PDFTapPlaceView: UIViewRepresentable {
                 )
                 gesture.setTranslation(.zero, in: documentView)
 
-            case .ended, .cancelled, .failed:
+            case .ended, .cancelled:
+                findScrollView(in: pdfView)?.isScrollEnabled = true
+                overlay.setDragging(false)
+                playHaptic()
+                commitOverlayPosition(overlay)
+                draggingID = nil
+
+            case .failed:
                 findScrollView(in: pdfView)?.isScrollEnabled = true
                 overlay.setDragging(false)
                 commitOverlayPosition(overlay)
@@ -258,6 +270,11 @@ struct PDFTapPlaceView: UIViewRepresentable {
             default:
                 break
             }
+        }
+
+        private func playHaptic() {
+            haptics.impactOccurred(intensity: 0.8)
+            haptics.prepare()
         }
 
         private func commitOverlayPosition(_ overlay: SignatureOverlayView) {
