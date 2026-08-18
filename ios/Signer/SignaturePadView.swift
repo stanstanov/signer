@@ -51,8 +51,6 @@ struct SignaturePadSheet: View {
                     .disabled(!isShowingPreview && !hasDrawableInk)
                     Spacer(minLength: 8)
                     colorPickerRow
-                        .opacity(isShowingPreview ? 0.45 : 1)
-                        .allowsHitTesting(!isShowingPreview)
                 }
                 .padding(.horizontal)
 
@@ -107,8 +105,7 @@ struct SignaturePadSheet: View {
         HStack(spacing: 10) {
             ForEach(SignatureInk.allCases) { swatch in
                 Button {
-                    selectedSwatch = swatch
-                    inkColor = swatch.color
+                    applyInk(swatch.color, swatch: swatch)
                 } label: {
                     Circle()
                         .fill(swatch.color)
@@ -133,10 +130,7 @@ struct SignaturePadSheet: View {
                 String(localized: "Custom color"),
                 selection: Binding(
                     get: { inkColor },
-                    set: { newColor in
-                        inkColor = newColor
-                        selectedSwatch = nil
-                    }
+                    set: { applyInk($0, swatch: nil) }
                 ),
                 supportsOpacity: false
             )
@@ -176,6 +170,27 @@ struct SignaturePadSheet: View {
                 }
             }
             path.stroke()
+        }
+    }
+
+    private func applyInk(_ color: Color, swatch: SignatureInk?) {
+        inkColor = color
+        selectedSwatch = swatch
+        if isShowingPreview, let previewImage {
+            self.previewImage = recolored(previewImage, with: UIColor(color))
+        }
+    }
+
+    private func recolored(_ image: UIImage, with color: UIColor) -> UIImage {
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = image.scale
+        format.opaque = false
+        let renderer = UIGraphicsImageRenderer(size: image.size, format: format)
+        return renderer.image { _ in
+            color.setFill()
+            let rect = CGRect(origin: .zero, size: image.size)
+            UIRectFill(rect)
+            image.draw(in: rect, blendMode: .destinationIn, alpha: 1)
         }
     }
 }

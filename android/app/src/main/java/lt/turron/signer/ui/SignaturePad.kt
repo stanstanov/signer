@@ -3,6 +3,8 @@ package lt.turron.signer.ui
 import android.graphics.Bitmap
 import android.graphics.Paint
 import android.graphics.Path as AndroidPath
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -73,6 +75,13 @@ fun SignaturePadSheet(
     var showColorPicker by remember { mutableStateOf(false) }
     val showingPreview = preview != null && strokes.isEmpty() && current.isEmpty()
     val hasInk = strokes.isNotEmpty() || current.isNotEmpty()
+    fun applyInk(color: Color, swatchIndex: Int) {
+        ink = color
+        selected = swatchIndex
+        if (showingPreview) {
+            preview = preview?.let { recolorSignature(it, color) }
+        }
+    }
 
     ModalBottomSheet(onDismissRequest = onCancel, sheetState = sheetState) {
         Column(Modifier.padding(bottom = 24.dp)) {
@@ -146,7 +155,7 @@ fun SignaturePadSheet(
                 Spacer(Modifier.weight(1f))
                 InkSwatches.forEachIndexed { index, (color, label) ->
                     val name = stringResource(label)
-                    val selectedSwatch = selected == index && !showingPreview
+                    val selectedSwatch = selected == index
                     Box(
                         Modifier
                             .padding(4.dp)
@@ -160,16 +169,14 @@ fun SignaturePadSheet(
                                 CircleShape,
                             )
                             .semantics { contentDescription = name }
-                            .clickable(enabled = !showingPreview) {
-                                selected = index
-                                ink = color
+                            .clickable {
+                                applyInk(color, index)
                             },
                     )
                 }
                 ColorPickerButton(
                     color = ink,
-                    selected = selected < 0 && !showingPreview,
-                    enabled = !showingPreview,
+                    selected = selected < 0,
                     onClick = { showColorPicker = true },
                 )
             }
@@ -179,8 +186,7 @@ fun SignaturePadSheet(
         ColorPickerDialog(
             color = ink,
             onConfirm = {
-                ink = it
-                selected = -1
+                applyInk(it, -1)
                 showColorPicker = false
             },
             onDismiss = { showColorPicker = false },
@@ -202,7 +208,6 @@ private val SpectrumColors = listOf(
 private fun ColorPickerButton(
     color: Color,
     selected: Boolean,
-    enabled: Boolean,
     onClick: () -> Unit,
 ) {
     val label = stringResource(R.string.color_custom)
@@ -212,7 +217,7 @@ private fun ColorPickerButton(
             .size(28.dp)
             .clip(CircleShape)
             .semantics { contentDescription = label }
-            .clickable(enabled = enabled, onClick = onClick),
+            .clickable(onClick = onClick),
     ) {
         Canvas(Modifier.fillMaxSize()) {
             drawCircle(Brush.sweepGradient(SpectrumColors))
@@ -420,4 +425,14 @@ private fun renderSignature(strokes: List<List<Offset>>, canvasSize: IntSize, co
         canvas.drawPath(path, paint)
     }
     return bitmap
+}
+
+private fun recolorSignature(source: Bitmap, color: Color): Bitmap {
+    val result = Bitmap.createBitmap(source.width, source.height, Bitmap.Config.ARGB_8888)
+    val canvas = android.graphics.Canvas(result)
+    val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        colorFilter = PorterDuffColorFilter(color.toArgb(), PorterDuff.Mode.SRC_IN)
+    }
+    canvas.drawBitmap(source, 0f, 0f, paint)
+    return result
 }
