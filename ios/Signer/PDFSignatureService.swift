@@ -48,6 +48,23 @@ enum PDFSignatureService {
         lastSignatureAnnotation = nil
     }
 
+    static func clamp(_ rect: CGRect, to pageBounds: CGRect) -> CGRect {
+        var r = rect
+        if r.width > pageBounds.width {
+            r.size.width = pageBounds.width
+            r.origin.x = pageBounds.minX
+        } else {
+            r.origin.x = max(pageBounds.minX, min(r.origin.x, pageBounds.maxX - r.width))
+        }
+        if r.height > pageBounds.height {
+            r.size.height = pageBounds.height
+            r.origin.y = pageBounds.minY
+        } else {
+            r.origin.y = max(pageBounds.minY, min(r.origin.y, pageBounds.maxY - r.height))
+        }
+        return r
+    }
+
     static func writeTemporaryPDF(_ document: PDFDocument, suggestedName: String) throws -> URL {
         let safe = suggestedName
             .replacingOccurrences(of: "/", with: "-")

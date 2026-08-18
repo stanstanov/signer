@@ -7,6 +7,8 @@ struct SignaturePadSheet: View {
     @State private var strokes: [[CGPoint]] = []
     @State private var currentStroke: [CGPoint] = []
     @State private var canvasSize: CGSize = CGSize(width: 350, height: 220)
+    @State private var inkColor: Color = SignatureInk.black.color
+    @State private var selectedSwatch: SignatureInk? = .black
 
     var body: some View {
         NavigationStack {
@@ -17,23 +19,29 @@ struct SignaturePadSheet: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal)
 
-                SignatureCanvas(strokes: $strokes, currentStroke: $currentStroke, canvasSize: $canvasSize)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 220)
-                    .background(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .strokeBorder(Color.secondary.opacity(0.35), lineWidth: 1)
-                    )
-                    .padding(.horizontal)
+                SignatureCanvas(
+                    strokes: $strokes,
+                    currentStroke: $currentStroke,
+                    canvasSize: $canvasSize,
+                    inkColor: inkColor
+                )
+                .frame(maxWidth: .infinity)
+                .frame(height: 220)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .strokeBorder(Color.secondary.opacity(0.35), lineWidth: 1)
+                )
+                .padding(.horizontal)
 
-                HStack {
+                HStack(spacing: 12) {
                     Button("Очистить") {
                         strokes = []
                         currentStroke = []
                     }
-                    Spacer()
+                    Spacer(minLength: 8)
+                    colorPickerRow
                 }
                 .padding(.horizontal)
 
@@ -58,6 +66,50 @@ struct SignaturePadSheet: View {
         }
     }
 
+    private var colorPickerRow: some View {
+        HStack(spacing: 10) {
+            ForEach(SignatureInk.allCases) { swatch in
+                Button {
+                    selectedSwatch = swatch
+                    inkColor = swatch.color
+                } label: {
+                    Circle()
+                        .fill(swatch.color)
+                        .frame(width: 28, height: 28)
+                        .overlay {
+                            Circle()
+                                .strokeBorder(Color.white, lineWidth: 2)
+                        }
+                        .overlay {
+                            Circle()
+                                .strokeBorder(
+                                    selectedSwatch == swatch ? Color.accentColor : Color.secondary.opacity(0.35),
+                                    lineWidth: selectedSwatch == swatch ? 2.5 : 1
+                                )
+                        }
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(swatch.accessibilityName)
+            }
+
+            ColorPicker(
+                "Свой цвет",
+                selection: Binding(
+                    get: { inkColor },
+                    set: { newColor in
+                        inkColor = newColor
+                        selectedSwatch = nil
+                    }
+                ),
+                supportsOpacity: false
+            )
+            .labelsHidden()
+            .frame(width: 28, height: 28)
+        }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel("Цвет подписи")
+    }
+
     private func renderSignatureImage() -> UIImage? {
         var all = strokes
         if !currentStroke.isEmpty {
@@ -75,7 +127,7 @@ struct SignaturePadSheet: View {
             path.lineWidth = 3.5
             path.lineCapStyle = .round
             path.lineJoinStyle = .round
-            UIColor.black.setStroke()
+            UIColor(inkColor).setStroke()
 
             let scaleX = size.width / max(canvasSize.width, 1)
             let scaleY = size.height / max(canvasSize.height, 1)
@@ -91,10 +143,39 @@ struct SignaturePadSheet: View {
     }
 }
 
+private enum SignatureInk: String, CaseIterable, Identifiable {
+    case black, gray, blue, navy, red, green
+
+    var id: String { rawValue }
+
+    var color: Color {
+        switch self {
+        case .black: return .black
+        case .gray: return Color(red: 0.38, green: 0.38, blue: 0.40)
+        case .blue: return Color(red: 0.12, green: 0.34, blue: 0.76)
+        case .navy: return Color(red: 0.08, green: 0.18, blue: 0.42)
+        case .red: return Color(red: 0.76, green: 0.12, blue: 0.14)
+        case .green: return Color(red: 0.10, green: 0.46, blue: 0.28)
+        }
+    }
+
+    var accessibilityName: String {
+        switch self {
+        case .black: return "Чёрный"
+        case .gray: return "Серый"
+        case .blue: return "Синий"
+        case .navy: return "Тёмно-синий"
+        case .red: return "Красный"
+        case .green: return "Зелёный"
+        }
+    }
+}
+
 private struct SignatureCanvas: View {
     @Binding var strokes: [[CGPoint]]
     @Binding var currentStroke: [CGPoint]
     @Binding var canvasSize: CGSize
+    var inkColor: Color
 
     var body: some View {
         GeometryReader { geo in
@@ -109,7 +190,7 @@ private struct SignatureCanvas: View {
                 }
                 context.stroke(
                     path,
-                    with: .color(.black),
+                    with: .color(inkColor),
                     style: StrokeStyle(lineWidth: 3, lineCap: .round, lineJoin: .round)
                 )
             }

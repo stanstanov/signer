@@ -2,7 +2,7 @@ import SwiftUI
 import PDFKit
 import UniformTypeIdentifiers
 
-/// Flow: open PDF → draw signature → tap page to place → export signed PDF.
+/// Flow: open PDF → draw signature → tap page to place → drag to adjust → export signed PDF.
 struct ContentView: View {
     @State private var pdfURL: URL?
     @State private var document: PDFDocument?
@@ -14,8 +14,7 @@ struct ContentView: View {
     @State private var statusMessage = "Откройте PDF, нарисуйте подпись и коснитесь места на странице."
     @State private var currentPageIndex = 0
     @State private var errorMessage: String?
-    /// Bumps so PDFView reloads after replace (annotation remove needs a hard refresh).
-    @State private var documentRevision = 0
+    @State private var placedSignature: PlacedSignature?
 
     var body: some View {
         NavigationStack {
@@ -23,12 +22,12 @@ struct ContentView: View {
                 if let document {
                     PDFTapPlaceView(
                         document: document,
-                        documentRevision: documentRevision,
                         currentPageIndex: $currentPageIndex,
                         hasSignature: signatureImage != nil,
-                        onPlace: placeSignature
+                        placedSignature: placedSignature,
+                        onPlace: placeSignature,
+                        onDragEnd: moveSignature
                     )
-                    .id(documentRevision)
                 } else {
                     ContentUnavailableView(
                         "Нет PDF",
@@ -53,7 +52,17 @@ struct ContentView: View {
                 SignaturePadSheet(
                     onSave: { image in
                         signatureImage = image
-                        statusMessage = "Подпись готова. Коснитесь PDF, куда её поставить."
+                        if var placed = placedSignature {
+                            placed.image = image
+                            placed.rect.size.height = placed.rect.width * image.size.height / max(image.size.width, 1)
+                            if let page = document?.page(at: placed.pageIndex) {
+                                placed.rect = PDFSignatureService.clamp(placed.rect, to: page.bounds(for: .mediaBox))
+                            }
+                            placedSignature = placed
+                            statusMessage = "Подпись обновлена. Перетащите пальцем или коснитесь другого места."
+                        } else {
+                            statusMessage = "Подпись готова. Коснитесь PDF, куда её поставить."
+                        }
                         showSignaturePad = false
                     },
                     onCancel: { showSignaturePad = false }
@@ -136,7 +145,7 @@ struct ContentView: View {
                 document = doc
                 currentPageIndex = 0
                 signatureImage = nil
-                documentRevision = 0
+                placedSignature = nil
                 PDFSignatureService.clearLastSignatureReference()
                 statusMessage = "PDF загружен. Нарисуйте подпись, затем коснитесь места на странице."
             } catch {
@@ -166,16 +175,27 @@ struct ContentView: View {
             width: targetWidth,
             height: targetHeight
         )
-        rect.origin.x = max(pageBounds.minX, min(rect.origin.x, pageBounds.maxX - rect.width))
-        rect.origin.y = max(pageBounds.minY, min(rect.origin.y, pageBounds.maxY - rect.height))
+        rect = PDFSignatureService.clamp(rect, to: pageBounds)
 
-        PDFSignatureService.addSignature(signatureImage, to: page, in: document, rect: rect)
-        documentRevision &+= 1
-        statusMessage = "Подпись на стр. \(pageIndex + 1). Новый тап перенесёт её; затем сохраните."
+        placedSignature = PlacedSignature(pageIndex: pageIndex, rect: rect, image: signatureImage)
+        statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+    }
+
+    private func moveSignature(pageIndex: Int, rect: CGRect) {
+        guard var placed = placedSignature else { return }
+        guard let document, let page = document.page(at: pageIndex) else { return }
+        placed.pageIndex = pageIndex
+        placed.rect = PDFSignatureService.clamp(rect, to: page.bounds(for: .mediaBox))
+        placedSignature = placed
+        statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
     }
 
     private func exportPDF() {
         guard let document else { return }
+        if let placed = placedSignature, let page = document.page(at: placed.pageIndex) {
+            PDFSignatureService.addSignature(placed.image, to: page, in: document, rect: placed.rect)
+        }
+        defer { PDFSignatureService.removeAllSignatures(from: document) }
         do {
             let url = try PDFSignatureService.writeTemporaryPDF(document, suggestedName: pdfURL?.deletingPathExtension().lastPathComponent ?? "signed")
             exportedURL = url
