@@ -115,10 +115,10 @@ struct ContentView: View {
             .foregroundStyle(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 12)
-            .background(.ultraThinMaterial)
-            .ignoresSafeArea(edges: .bottom)
+            .padding(.vertical, 12)
+            .modifier(GlassPanelBackground())
+            .padding(.horizontal, 16)
+            .padding(.bottom, 10)
     }
 
     @ToolbarContentBuilder
@@ -246,6 +246,26 @@ struct ContentView: View {
             statusMessage = "Готово — выберите, куда сохранить подписанный PDF."
         } catch {
             errorMessage = error.localizedDescription
+        }
+    }
+}
+
+// MARK: - Glass status panel
+
+private struct GlassPanelBackground: ViewModifier {
+    private let shape = RoundedRectangle(cornerRadius: 22, style: .continuous)
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 26.0, *) {
+            content.glassEffect(.regular, in: shape)
+        } else {
+            content
+                .background(.ultraThinMaterial, in: shape)
+                .overlay {
+                    shape.strokeBorder(.white.opacity(0.22), lineWidth: 0.5)
+                }
+                .shadow(color: .black.opacity(0.16), radius: 16, y: 6)
         }
     }
 }
