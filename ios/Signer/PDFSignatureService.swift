@@ -31,17 +31,19 @@ enum PDFSignatureService {
         return false
     }
 
-    /// Stamps `image` into `rect` on the PDF page (page coordinates, bottom-left origin).
-    /// Replaces any previous signature stamps in the document.
-    static func addSignature(_ image: UIImage, to page: PDFPage, in document: PDFDocument, rect: CGRect) {
-        guard let cgImage = image.cgImage else { return }
+    /// Stamps every signature into the document (page coordinates, bottom-left origin).
+    /// Replaces any previous signature stamps we placed.
+    static func stampSignatures(_ signatures: [PlacedSignature], in document: PDFDocument) {
         removeAllSignatures(from: document)
-
-        let annotation = PDFImageAnnotation(image: cgImage, bounds: rect)
-        annotation.userName = signatureMarker
-        annotation.contents = signatureMarker
-        page.addAnnotation(annotation)
-        lastSignatureAnnotation = annotation
+        for signature in signatures {
+            guard let page = document.page(at: signature.pageIndex),
+                  let cgImage = signature.image.cgImage else { continue }
+            let annotation = PDFImageAnnotation(image: cgImage, bounds: signature.rect)
+            annotation.userName = signatureMarker
+            annotation.contents = signatureMarker
+            page.addAnnotation(annotation)
+            lastSignatureAnnotation = annotation
+        }
     }
 
     static func clearLastSignatureReference() {

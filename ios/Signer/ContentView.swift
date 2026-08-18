@@ -14,7 +14,8 @@ struct ContentView: View {
     @State private var statusMessage = "Откройте PDF, нарисуйте подпись и коснитесь места на странице."
     @State private var currentPageIndex = 0
     @State private var errorMessage: String?
-    @State private var placedSignature: PlacedSignature?
+    @State private var placedSignatures: [PlacedSignature] = []
+    @State private var allowsMultipleSignatures = false
 
     var body: some View {
         NavigationStack {
@@ -24,7 +25,7 @@ struct ContentView: View {
                         document: document,
                         currentPageIndex: $currentPageIndex,
                         hasSignature: signatureImage != nil,
-                        placedSignature: placedSignature,
+                        placedSignatures: placedSignatures,
                         onPlace: placeSignature,
                         onDragEnd: moveSignature
                     )
@@ -52,13 +53,17 @@ struct ContentView: View {
                 SignaturePadSheet(
                     onSave: { image in
                         signatureImage = image
-                        if var placed = placedSignature {
+                        if allowsMultipleSignatures {
+                            statusMessage = placedSignatures.isEmpty
+                                ? "Подпись готова. Коснитесь PDF, чтобы поставить. Каждое касание добавит ещё одну."
+                                : "Подпись обновлена. Коснитесь PDF, чтобы поставить ещё одну."
+                        } else if var placed = placedSignatures.first {
                             placed.image = image
                             placed.rect.size.height = placed.rect.width * image.size.height / max(image.size.width, 1)
                             if let page = document?.page(at: placed.pageIndex) {
                                 placed.rect = PDFSignatureService.clamp(placed.rect, to: page.bounds(for: .mediaBox))
                             }
-                            placedSignature = placed
+                            placedSignatures = [placed]
                             statusMessage = "Подпись обновлена. Перетащите пальцем или коснитесь другого места."
                         } else {
                             statusMessage = "Подпись готова. Коснитесь PDF, куда её поставить."
@@ -82,6 +87,9 @@ struct ContentView: View {
             } message: {
                 Text(errorMessage ?? "")
             }
+            .onChange(of: allowsMultipleSignatures) { _, isOn in
+                applySignatureMode(isOn)
+            }
         }
     }
 
@@ -91,6 +99,10 @@ struct ContentView: View {
                 .font(.footnote)
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, alignment: .leading)
+
+            Toggle("Несколько подписей", isOn: $allowsMultipleSignatures)
+                .font(.subheadline)
+                .disabled(document == nil)
 
             if signatureImage != nil {
                 HStack(spacing: 12) {
@@ -145,7 +157,8 @@ struct ContentView: View {
                 document = doc
                 currentPageIndex = 0
                 signatureImage = nil
-                placedSignature = nil
+                placedSignatures = []
+                allowsMultipleSignatures = false
                 PDFSignatureService.clearLastSignatureReference()
                 statusMessage = "PDF загружен. Нарисуйте подпись, затем коснитесь места на странице."
             } catch {
@@ -177,24 +190,48 @@ struct ContentView: View {
         )
         rect = PDFSignatureService.clamp(rect, to: pageBounds)
 
-        placedSignature = PlacedSignature(pageIndex: pageIndex, rect: rect, image: signatureImage)
-        statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+        let placed = PlacedSignature(pageIndex: pageIndex, rect: rect, image: signatureImage)
+        if allowsMultipleSignatures {
+            placedSignatures.append(placed)
+            statusMessage = "Подписей: \(placedSignatures.count). Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+        } else {
+            placedSignatures = [placed]
+            statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+        }
     }
 
-    private func moveSignature(pageIndex: Int, rect: CGRect) {
-        guard var placed = placedSignature else { return }
+    private func moveSignature(id: UUID, pageIndex: Int, rect: CGRect) {
+        guard let index = placedSignatures.firstIndex(where: { $0.id == id }) else { return }
         guard let document, let page = document.page(at: pageIndex) else { return }
-        placed.pageIndex = pageIndex
-        placed.rect = PDFSignatureService.clamp(rect, to: page.bounds(for: .mediaBox))
-        placedSignature = placed
-        statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+        placedSignatures[index].pageIndex = pageIndex
+        placedSignatures[index].rect = PDFSignatureService.clamp(rect, to: page.bounds(for: .mediaBox))
+        if allowsMultipleSignatures {
+            statusMessage = "Подписей: \(placedSignatures.count). Каждую можно двигать отдельно."
+        } else {
+            statusMessage = "Подпись на стр. \(pageIndex + 1). Перетащите пальцем или коснитесь другого места."
+        }
+    }
+
+    private func applySignatureMode(_ isOn: Bool) {
+        if isOn {
+            statusMessage = placedSignatures.isEmpty
+                ? "Режим нескольких подписей. Коснитесь PDF, чтобы поставить."
+                : "Режим нескольких подписей. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+        } else {
+            if placedSignatures.count > 1 {
+                placedSignatures = Array(placedSignatures.suffix(1))
+                statusMessage = "Режим одной подписи — оставлена последняя. Перетащите или коснитесь другого места."
+            } else if placedSignatures.count == 1 {
+                statusMessage = "Режим одной подписи. Перетащите пальцем или коснитесь другого места."
+            } else {
+                statusMessage = "Режим одной подписи. Коснитесь PDF, куда поставить подпись."
+            }
+        }
     }
 
     private func exportPDF() {
         guard let document else { return }
-        if let placed = placedSignature, let page = document.page(at: placed.pageIndex) {
-            PDFSignatureService.addSignature(placed.image, to: page, in: document, rect: placed.rect)
-        }
+        PDFSignatureService.stampSignatures(placedSignatures, in: document)
         defer { PDFSignatureService.removeAllSignatures(from: document) }
         do {
             let url = try PDFSignatureService.writeTemporaryPDF(document, suggestedName: pdfURL?.deletingPathExtension().lastPathComponent ?? "signed")

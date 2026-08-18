@@ -1,20 +1,28 @@
 import SwiftUI
 import PDFKit
 
-struct PlacedSignature {
+struct PlacedSignature: Identifiable {
+    let id: UUID
     var pageIndex: Int
     var rect: CGRect
     var image: UIImage
+
+    init(id: UUID = UUID(), pageIndex: Int, rect: CGRect, image: UIImage) {
+        self.id = id
+        self.pageIndex = pageIndex
+        self.rect = rect
+        self.image = image
+    }
 }
 
-/// PDF viewer: tap places the signature; an overlay lets you drag it with a finger.
+/// PDF viewer: tap places a signature; overlays let you drag each one with a finger.
 struct PDFTapPlaceView: UIViewRepresentable {
     let document: PDFDocument
     @Binding var currentPageIndex: Int
     var hasSignature: Bool
-    var placedSignature: PlacedSignature?
+    var placedSignatures: [PlacedSignature]
     var onPlace: (_ pageIndex: Int, _ pointInPage: CGPoint) -> Void
-    var onDragEnd: (_ pageIndex: Int, _ rect: CGRect) -> Void
+    var onDragEnd: (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void
 
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
@@ -55,16 +63,16 @@ struct PDFTapPlaceView: UIViewRepresentable {
         )
 
         context.coordinator.pdfView = pdfView
-        context.coordinator.syncPreview()
+        context.coordinator.syncOverlays()
         DispatchQueue.main.async {
-            context.coordinator.syncPreview()
+            context.coordinator.syncOverlays()
         }
         return pdfView
     }
 
     static func dismantleUIView(_ uiView: PDFView, coordinator: Coordinator) {
         NotificationCenter.default.removeObserver(coordinator)
-        coordinator.overlay.removeFromSuperview()
+        coordinator.removeAllOverlays()
     }
 
     func updateUIView(_ pdfView: PDFView, context: Context) {
@@ -72,7 +80,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
         context.coordinator.onPlace = onPlace
         context.coordinator.onDragEnd = onDragEnd
         context.coordinator.currentPageIndex = $currentPageIndex
-        context.coordinator.placedSignature = placedSignature
+        context.coordinator.placedSignatures = placedSignatures
         context.coordinator.pdfView = pdfView
 
         if pdfView.document !== document {
@@ -84,8 +92,8 @@ struct PDFTapPlaceView: UIViewRepresentable {
             pdfView.layoutDocumentView()
         }
 
-        if !context.coordinator.isDragging {
-            context.coordinator.syncPreview()
+        if context.coordinator.draggingID == nil {
+            context.coordinator.syncOverlays()
         }
     }
 
@@ -93,7 +101,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
         Coordinator(
             currentPageIndex: $currentPageIndex,
             hasSignature: hasSignature,
-            placedSignature: placedSignature,
+            placedSignatures: placedSignatures,
             onPlace: onPlace,
             onDragEnd: onDragEnd
         )
@@ -102,36 +110,26 @@ struct PDFTapPlaceView: UIViewRepresentable {
     final class Coordinator: NSObject, UIGestureRecognizerDelegate {
         var currentPageIndex: Binding<Int>
         var hasSignature: Bool
-        var placedSignature: PlacedSignature?
+        var placedSignatures: [PlacedSignature]
         var onPlace: (_ pageIndex: Int, _ pointInPage: CGPoint) -> Void
-        var onDragEnd: (_ pageIndex: Int, _ rect: CGRect) -> Void
+        var onDragEnd: (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void
         weak var pdfView: PDFView?
-        var isDragging = false
+        var draggingID: UUID?
 
-        let overlay = SignatureOverlayView()
+        private var overlays: [UUID: SignatureOverlayView] = [:]
 
         init(
             currentPageIndex: Binding<Int>,
             hasSignature: Bool,
-            placedSignature: PlacedSignature?,
+            placedSignatures: [PlacedSignature],
             onPlace: @escaping (_ pageIndex: Int, _ pointInPage: CGPoint) -> Void,
-            onDragEnd: @escaping (_ pageIndex: Int, _ rect: CGRect) -> Void
+            onDragEnd: @escaping (_ id: UUID, _ pageIndex: Int, _ rect: CGRect) -> Void
         ) {
             self.currentPageIndex = currentPageIndex
             self.hasSignature = hasSignature
-            self.placedSignature = placedSignature
+            self.placedSignatures = placedSignatures
             self.onPlace = onPlace
             self.onDragEnd = onDragEnd
-            super.init()
-
-            overlay.isUserInteractionEnabled = true
-            overlay.isExclusiveTouch = true
-            overlay.accessibilityLabel = "Подпись"
-            overlay.accessibilityHint = "Перетащите, чтобы переместить"
-            let pan = UIPanGestureRecognizer(target: self, action: #selector(handleOverlayPan(_:)))
-            pan.maximumNumberOfTouches = 1
-            pan.delegate = self
-            overlay.addGestureRecognizer(pan)
         }
 
         @objc func pageChanged(_ note: Notification) {
@@ -142,38 +140,73 @@ struct PDFTapPlaceView: UIViewRepresentable {
             if index != NSNotFound {
                 currentPageIndex.wrappedValue = index
             }
-            if !isDragging {
-                syncPreview()
+            if draggingID == nil {
+                syncOverlays()
             }
         }
 
         @objc func layoutDidChange(_ note: Notification) {
-            if !isDragging {
-                syncPreview()
+            if draggingID == nil {
+                syncOverlays()
             }
         }
 
-        func syncPreview() {
+        func removeAllOverlays() {
+            overlays.values.forEach { $0.removeFromSuperview() }
+            overlays.removeAll()
+        }
+
+        func syncOverlays() {
             guard let pdfView,
-                  let placed = placedSignature,
                   let document = pdfView.document,
-                  placed.pageIndex < document.pageCount,
-                  let page = document.page(at: placed.pageIndex),
                   let documentView = pdfView.documentView else {
-                overlay.removeFromSuperview()
+                removeAllOverlays()
                 return
             }
 
-            if overlay.superview !== documentView {
+            let activeIDs = Set(placedSignatures.map(\.id))
+            for (id, overlay) in overlays where !activeIDs.contains(id) {
                 overlay.removeFromSuperview()
-                documentView.addSubview(overlay)
+                overlays.removeValue(forKey: id)
             }
-            documentView.bringSubviewToFront(overlay)
-            overlay.image = placed.image
 
-            let rectInPDF = pdfView.convert(placed.rect, from: page)
-            let rectInDocument = documentView.convert(rectInPDF, from: pdfView)
-            overlay.layoutForSignatureFrame(rectInDocument)
+            for placed in placedSignatures {
+                if placed.id == draggingID { continue }
+                guard placed.pageIndex < document.pageCount,
+                      let page = document.page(at: placed.pageIndex) else { continue }
+
+                let overlay = overlays[placed.id] ?? makeOverlay(id: placed.id)
+                if overlay.superview !== documentView {
+                    overlay.removeFromSuperview()
+                    documentView.addSubview(overlay)
+                }
+                overlay.image = placed.image
+
+                let rectInPDF = pdfView.convert(placed.rect, from: page)
+                let rectInDocument = documentView.convert(rectInPDF, from: pdfView)
+                overlay.layoutForSignatureFrame(rectInDocument)
+            }
+
+            for placed in placedSignatures {
+                if let overlay = overlays[placed.id] {
+                    documentView.bringSubviewToFront(overlay)
+                }
+            }
+        }
+
+        private func makeOverlay(id: UUID) -> SignatureOverlayView {
+            let overlay = SignatureOverlayView()
+            overlay.signatureID = id
+            overlay.isUserInteractionEnabled = true
+            overlay.isExclusiveTouch = true
+            overlay.accessibilityLabel = "Подпись"
+            overlay.accessibilityHint = "Перетащите, чтобы переместить"
+            let pan = UIPanGestureRecognizer(target: self, action: #selector(handleOverlayPan(_:)))
+            pan.maximumNumberOfTouches = 1
+            pan.delegate = self
+            overlay.addGestureRecognizer(pan)
+            overlays[id] = overlay
+            return overlay
         }
 
         @objc func handleTap(_ gesture: UITapGestureRecognizer) {
@@ -194,13 +227,15 @@ struct PDFTapPlaceView: UIViewRepresentable {
         }
 
         @objc func handleOverlayPan(_ gesture: UIPanGestureRecognizer) {
-            guard let pdfView,
+            guard let overlay = gesture.view as? SignatureOverlayView,
+                  let pdfView,
                   let documentView = overlay.superview else { return }
 
             switch gesture.state {
             case .began:
-                isDragging = true
+                draggingID = overlay.signatureID
                 overlay.setDragging(true)
+                overlay.superview?.bringSubviewToFront(overlay)
                 if let scroll = findScrollView(in: pdfView) {
                     scroll.setContentOffset(scroll.contentOffset, animated: false)
                     scroll.isScrollEnabled = false
@@ -217,20 +252,20 @@ struct PDFTapPlaceView: UIViewRepresentable {
             case .ended, .cancelled, .failed:
                 findScrollView(in: pdfView)?.isScrollEnabled = true
                 overlay.setDragging(false)
-                commitOverlayPosition()
-                isDragging = false
+                commitOverlayPosition(overlay)
+                draggingID = nil
 
             default:
                 break
             }
         }
 
-        private func commitOverlayPosition() {
+        private func commitOverlayPosition(_ overlay: SignatureOverlayView) {
             guard let pdfView,
                   let document = pdfView.document,
                   let documentView = overlay.superview,
-                  let placed = placedSignature else {
-                syncPreview()
+                  let placed = placedSignatures.first(where: { $0.id == overlay.signatureID }) else {
+                syncOverlays()
                 return
             }
 
@@ -238,7 +273,7 @@ struct PDFTapPlaceView: UIViewRepresentable {
             let frameInPDFView = pdfView.convert(signatureFrame, from: documentView)
             let centerInPDF = CGPoint(x: frameInPDFView.midX, y: frameInPDFView.midY)
             guard let page = pdfView.page(for: centerInPDF, nearest: true) else {
-                syncPreview()
+                syncOverlays()
                 return
             }
 
@@ -248,15 +283,15 @@ struct PDFTapPlaceView: UIViewRepresentable {
 
             let index = document.index(for: page)
             guard index != NSNotFound else {
-                syncPreview()
+                syncOverlays()
                 return
             }
-            onDragEnd(index, rect)
+            onDragEnd(placed.id, index, rect)
         }
 
         func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
             if gestureRecognizer is UITapGestureRecognizer {
-                if let view = touch.view, view === overlay || view.isDescendant(of: overlay) {
+                if let view = touch.view, overlays.values.contains(where: { view === $0 || view.isDescendant(of: $0) }) {
                     return false
                 }
             }
@@ -283,6 +318,8 @@ struct PDFTapPlaceView: UIViewRepresentable {
 /// Larger hit target around the stamp so it is easy to grab with a finger.
 final class SignatureOverlayView: UIView {
     static let hitPadding: CGFloat = 18
+
+    var signatureID = UUID()
 
     private let imageView: UIImageView = {
         let view = UIImageView()
