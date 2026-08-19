@@ -1,2261 +1,3089 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "Black" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Schwarz"
+  "sourceLanguage": "en",
+  "strings": {
+    "Black": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schwarz"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Black"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Black"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Negro"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negro"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Noir"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Must"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Juoda"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noir"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czarny"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nero"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Чёрный"
-          }
-        }
-      }
-    },
-    "Blue" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Blau"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Juoda"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Blue"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Melna"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Azul"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czarny"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bleu"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mėlyna"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Niebieski"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Синий"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Чёрный"
           }
         }
       }
     },
-    "Cancel" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abbrechen"
+    "Blue": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blau"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancel"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blue"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azul"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Annuler"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sinine"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atšaukti"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleu"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anuluj"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blu"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Отмена"
-          }
-        }
-      }
-    },
-    "Clear" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Löschen"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mėlyna"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Clear"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zila"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Borrar"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Niebieski"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Effacer"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Išvalyti"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wyczyść"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Очистить"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синий"
           }
         }
       }
     },
-    "Couldn’t read the PDF." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF konnte nicht gelesen werden."
+    "Cancel": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abbrechen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Couldn’t read the PDF."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo leer el PDF."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impossible de lire le PDF."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tühista"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nepavyko perskaityti PDF."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie udało się odczytać pliku PDF."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annulla"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось прочитать PDF."
-          }
-        }
-      }
-    },
-    "Couldn’t write the PDF." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF konnte nicht gespeichert werden."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atšaukti"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Couldn’t write the PDF."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atcelt"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo guardar el PDF."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anuluj"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Impossible d’enregistrer le PDF."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nepavyko įrašyti PDF."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie udało się zapisać pliku PDF."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Не удалось записать PDF."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отмена"
           }
         }
       }
     },
-    "Current signature. Tap Clear to draw it again." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aktuelle Unterschrift. Tippen Sie auf Löschen, um sie neu zu zeichnen."
+    "Clear": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Current signature. Tap Clear to draw it again."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clear"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firma actual. Pulse Borrar para dibujarla de nuevo."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature actuelle. Touchez Effacer pour la redessiner."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tühjenda"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dabartinis parašas. Palieskite „Išvalyti“, kad nupieštumėte iš naujo."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bieżący podpis. Stuknij Wyczyść, aby narysować go ponownie."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancella"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Текущая подпись. Нажмите «Очистить», чтобы нарисовать заново."
-          }
-        }
-      }
-    },
-    "Custom color" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eigene Farbe"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Išvalyti"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Custom color"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notīrīt"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Color personalizado"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wyczyść"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Couleur perso"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pasirinktinė spalva"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Własny kolor"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Свой цвет"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очистить"
           }
         }
       }
     },
-    "Delete" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Löschen"
+    "Couldn’t read the PDF.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF konnte nicht gelesen werden."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t read the PDF."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Eliminar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer el PDF."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Supprimer"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lire le PDF."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ištrinti"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nepavyko perskaityti PDF."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usuń"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się odczytać pliku PDF."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Удалить"
-          }
-        }
-      }
-    },
-    "Done" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fertig"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listo"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terminé"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atlikta"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gotowe"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Готово"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать PDF."
           }
         }
       }
     },
-    "Done — choose where to save the signed PDF." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fertig — wählen Sie, wo das signierte PDF gespeichert werden soll."
+    "Couldn’t write the PDF.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF konnte nicht gespeichert werden."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Done — choose where to save the signed PDF."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t write the PDF."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listo: elija dónde guardar el PDF firmado."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo guardar el PDF."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terminé — choisissez où enregistrer le PDF signé."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d’enregistrer le PDF."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atlikta — pasirinkite, kur išsaugoti pasirašytą PDF."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nepavyko įrašyti PDF."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gotowe — wybierz, gdzie zapisać podpisany PDF."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nie udało się zapisać pliku PDF."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Готово — выберите, куда сохранить подписанный PDF."
-          }
-        }
-      }
-    },
-    "Drag to move. Tap for the menu." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ziehen zum Verschieben. Tippen für das Menü."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Drag to move. Tap for the menu."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arrastre para mover. Pulse para el menú."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faites glisser pour déplacer. Touchez pour le menu."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vilkite, kad perkeltumėte. Palieskite meniu."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Przeciągnij, aby przesunąć. Stuknij, aby otworzyć menu."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Перетащите, чтобы переместить. Коснитесь для меню."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось записать PDF."
           }
         }
       }
     },
-    "Draw a signature first." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeichnen Sie zuerst eine Unterschrift."
+    "Current signature. Tap Clear to draw it again.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktuelle Unterschrift. Tippen Sie auf Löschen, um sie neu zu zeichnen."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Draw a signature first."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current signature. Tap Clear to draw it again."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Primero dibuje una firma."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma actual. Pulse Borrar para dibujarla de nuevo."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dessinez d’abord une signature."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Praegune allkiri. Puudutage «Tühjenda», et uuesti joonistada."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pirmiausia nupieškite parašą."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature actuelle. Touchez Effacer pour la redessiner."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Najpierw narysuj podpis."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma attuale. Tocca Cancella per ridisegnarla."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сначала нарисуйте подпись."
-          }
-        }
-      }
-    },
-    "Draw your signature with your finger" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeichnen Sie Ihre Unterschrift mit dem Finger"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dabartinis parašas. Palieskite „Išvalyti“, kad nupieštumėte iš naujo."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Draw your signature with your finger"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pašreizējais paraksts. Pieskarieties «Notīrīt», lai zīmētu no jauna."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dibuje su firma con el dedo"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bieżący podpis. Stuknij Wyczyść, aby narysować go ponownie."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dessinez votre signature avec le doigt"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nupieškite parašą pirštu"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Narysuj podpis palcem"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нарисуйте подпись пальцем"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Текущая подпись. Нажмите «Очистить», чтобы нарисовать заново."
           }
         }
       }
     },
-    "Error" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fehler"
+    "Custom color": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eigene Farbe"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom color"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Error"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color personalizado"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Erreur"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kohandatud värv"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Klaida"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couleur perso"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Błąd"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colore personalizzato"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ошибка"
-          }
-        }
-      }
-    },
-    "Gray" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grau"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasirinktinė spalva"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gray"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pielāgota krāsa"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gris"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Własny kolor"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gris"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pilka"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Szary"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Серый"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свой цвет"
           }
         }
       }
     },
-    "Green" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Grün"
+    "Delete": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Löschen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Green"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verde"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vert"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kustuta"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Žalia"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zielony"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Зелёный"
-          }
-        }
-      }
-    },
-    "In this mode each tap places a new signature, and you can drag each one separately." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In diesem Modus platziert jeder Tipp eine neue Unterschrift, und Sie können jede einzeln ziehen."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ištrinti"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "In this mode each tap places a new signature, and you can drag each one separately."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dzēst"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En este modo, cada toque coloca una firma nueva y puede arrastrar cada una por separado."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuń"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dans ce mode, chaque toucher place une nouvelle signature, et vous pouvez faire glisser chacune séparément."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Šiuo režimu kiekvienas palietimas padeda naują parašą, ir kiekvieną galima vilkti atskirai."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "W tym trybie każde stuknięcie stawia nowy podpis, a każdy można przeciągać osobno."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "В этом режиме каждое касание ставит новую подпись, и каждую можно двигать отдельно."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить"
           }
         }
       }
     },
-    "Multiple signature mode. Tap the PDF to place one." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modus für mehrere Unterschriften. Tippen Sie auf das PDF, um eine zu platzieren."
+    "Done": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Multiple signature mode. Tap the PDF to place one."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de varias firmas. Pulse el PDF para colocar una."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode signatures multiples. Touchez le PDF pour en placer une."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valmis"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kelių parašų režimas. Palieskite PDF, kad padėtumėte."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb wielu podpisów. Stuknij PDF, aby umieścić podpis."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatto"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим нескольких подписей. Коснитесь PDF, чтобы поставить."
-          }
-        }
-      }
-    },
-    "Multiple signature mode. Tap to add another; drag each one separately." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modus für mehrere Unterschriften. Tippen Sie, um eine weitere hinzuzufügen; ziehen Sie jede einzeln."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atlikta"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Multiple signature mode. Tap to add another; drag each one separately."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gatavs"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de varias firmas. Pulse para añadir otra; arrastre cada una por separado."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gotowe"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode signatures multiples. Touchez pour en ajouter une autre ; faites glisser chacune séparément."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kelių parašų režimas. Palieskite, kad pridėtumėte dar vieną; kiekvieną galima vilkti atskirai."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb wielu podpisów. Stuknij, aby dodać kolejny; każdy przeciągaj osobno."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим нескольких подписей. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готово"
           }
         }
       }
     },
-    "Multiple signatures" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mehrere Unterschriften"
+    "Done — choose where to save the signed PDF.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig — wählen Sie, wo das signierte PDF gespeichert werden soll."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Multiple signatures"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done — choose where to save the signed PDF."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Varias firmas"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo: elija dónde guardar el PDF firmado."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Plusieurs signatures"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valmis — valige, kuhu allkirjastatud PDF salvestada."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Keli parašai"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé — choisissez où enregistrer le PDF signé."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wiele podpisów"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fatto — scegli dove salvare il PDF firmato."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Несколько подписей"
-          }
-        }
-      }
-    },
-    "Navy" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dunkelblau"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atlikta — pasirinkite, kur išsaugoti pasirašytą PDF."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Navy"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gatavs — izvēlieties, kur saglabāt parakstīto PDF."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Azul marino"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gotowe — wybierz, gdzie zapisać podpisany PDF."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bleu marine"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tamsiai mėlyna"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Granatowy"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Тёмно-синий"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Готово — выберите, куда сохранить подписанный PDF."
           }
         }
       }
     },
-    "No PDF" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kein PDF"
+    "Drag to move. Tap for the menu.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziehen zum Verschieben. Tippen für das Menü."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No PDF"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drag to move. Tap for the menu."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay PDF"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrastre para mover. Pulse para el menú."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pas de PDF"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lohistage liigutamiseks. Puudutage menüü avamiseks."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nėra PDF"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faites glisser pour déplacer. Touchez pour le menu."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Brak PDF"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trascina per spostare. Tocca per il menu."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нет PDF"
-          }
-        }
-      }
-    },
-    "OK" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vilkite, kad perkeltumėte. Palieskite meniu."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Velciet, lai pārvietotu. Pieskarieties, lai atvērtu izvēlni."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Przeciągnij, aby przesunąć. Stuknij, aby otworzyć menu."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Gerai"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "OK"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перетащите, чтобы переместить. Коснитесь для меню."
           }
         }
       }
     },
-    "Open" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffnen"
+    "Draw a signature first.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeichnen Sie zuerst eine Unterschrift."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Draw a signature first."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abrir"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primero dibuje una firma."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrir"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esmalt joonistage allkiri."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atidaryti"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dessinez d’abord une signature."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otwórz"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima disegna una firma."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Открыть"
-          }
-        }
-      }
-    },
-    "Open a PDF first." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffnen Sie zuerst ein PDF."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pirmiausia nupieškite parašą."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open a PDF first."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vispirms uzzīmējiet parakstu."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abra primero un PDF."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Najpierw narysuj podpis."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrez d’abord un PDF."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pirmiausia atidarykite PDF."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Najpierw otwórz plik PDF."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сначала откройте PDF."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сначала нарисуйте подпись."
           }
         }
       }
     },
-    "Open a PDF, draw a signature, then tap the page to place it." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Öffnen Sie ein PDF, zeichnen Sie eine Unterschrift und tippen Sie auf die Seite."
+    "Draw your signature with your finger": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeichnen Sie Ihre Unterschrift mit dem Finger"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Open a PDF, draw a signature, then tap the page to place it."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Draw your signature with your finger"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abra un PDF, dibuje una firma y pulse el lugar en la página."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dibuje su firma con el dedo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ouvrez un PDF, dessinez une signature, puis touchez la page pour la placer."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joonistage allkiri sõrmega"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atidarykite PDF, nupieškite parašą ir palieskite vietą puslapyje."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dessinez votre signature avec le doigt"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Otwórz PDF, narysuj podpis i stuknij miejsce na stronie."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disegna la tua firma con il dito"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Откройте PDF, нарисуйте подпись и коснитесь места на странице."
-          }
-        }
-      }
-    },
-    "PDF loaded. Draw a signature, then tap the page." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF geladen. Zeichnen Sie eine Unterschrift und tippen Sie auf die Seite."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nupieškite parašą pirštu"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF loaded. Draw a signature, then tap the page."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uzzīmējiet parakstu ar pirkstu"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF cargado. Dibuje una firma y pulse la página."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Narysuj podpis palcem"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF chargé. Dessinez une signature, puis touchez la page."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF įkeltas. Nupieškite parašą ir palieskite puslapį."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wczytano PDF. Narysuj podpis, potem stuknij stronę."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "PDF загружен. Нарисуйте подпись, затем коснитесь места на странице."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нарисуйте подпись пальцем"
           }
         }
       }
     },
-    "Red" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rot"
+    "Error": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fehler"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Red"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rojo"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rouge"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viga"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Raudona"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Czerwony"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Errore"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Красный"
-          }
-        }
-      }
-    },
-    "Save" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sichern"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klaida"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Save"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kļūda"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guardar"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Błąd"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enregistrer"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Išsaugoti"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zapisz"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Сохранить"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ошибка"
           }
         }
       }
     },
-    "Settings" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einstellungen"
+    "Gray": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grau"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Settings"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gray"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajustes"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gris"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Réglages"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hall"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nustatymai"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gris"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ustawienia"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grigio"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Настройки"
-          }
-        }
-      }
-    },
-    "Signature" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pilka"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature"
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pelēka"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firma"
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Szary"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature"
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись"
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Серый"
           }
         }
       }
     },
-    "Signature color" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschriftfarbe"
+    "Green": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grün"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature color"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Green"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Color de la firma"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Couleur de la signature"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Roheline"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašo spalva"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vert"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kolor podpisu"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Цвет подписи"
-          }
-        }
-      }
-    },
-    "Signature is ready. Tap the PDF to place it. Each tap adds another." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift ist fertig. Tippen Sie auf das PDF, um sie zu platzieren. Jeder Tipp fügt eine weitere hinzu."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Žalia"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature is ready. Tap the PDF to place it. Each tap adds another."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zaļa"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La firma está lista. Pulse el PDF para colocarla. Cada toque añade otra."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zielony"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La signature est prête. Touchez le PDF pour la placer. Chaque toucher en ajoute une autre."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas paruoštas. Palieskite PDF, kad padėtumėte. Kiekvienas palietimas pridės dar vieną."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis gotowy. Stuknij PDF, aby go umieścić. Każde stuknięcie doda kolejny."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись готова. Коснитесь PDF, чтобы поставить. Каждое касание добавит ещё одну."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зелёный"
           }
         }
       }
     },
-    "Signature is ready. Tap the PDF where you want it." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift ist fertig. Tippen Sie auf das PDF, wo sie stehen soll."
+    "In this mode each tap places a new signature, and you can drag each one separately.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In diesem Modus platziert jeder Tipp eine neue Unterschrift, und Sie können jede einzeln ziehen."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature is ready. Tap the PDF where you want it."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In this mode each tap places a new signature, and you can drag each one separately."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La firma está lista. Pulse el PDF donde quiera colocarla."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En este modo, cada toque coloca una firma nueva y puede arrastrar cada una por separado."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La signature est prête. Touchez le PDF à l’endroit souhaité."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selles režiimis iga puudutus paigutab uue allkirja ja igaüht saab eraldi lohistada."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas paruoštas. Palieskite PDF ten, kur jį padėti."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans ce mode, chaque toucher place une nouvelle signature, et vous pouvez faire glisser chacune séparément."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis gotowy. Stuknij PDF w miejscu, gdzie go umieścić."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In questa modalità ogni tocco posiziona una nuova firma e puoi trascinare ciascuna separatamente."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись готова. Коснитесь PDF, куда её поставить."
-          }
-        }
-      }
-    },
-    "Signature on page %lld. Drag it or tap another spot." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift auf S. %lld. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Šiuo režimu kiekvienas palietimas padeda naują parašą, ir kiekvieną galima vilkti atskirai."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature on page %lld. Drag it or tap another spot."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Šajā režīmā katrs pieskāriens novieto jaunu parakstu, un katru var vilkt atsevišķi."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firma en la pág. %lld. Arrástrela o pulse otro lugar."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "W tym trybie każde stuknięcie stawia nowy podpis, a każdy można przeciągać osobno."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature à la page %lld. Faites-la glisser ou touchez un autre endroit."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas %lld psl. Vilkite pirštu arba palieskite kitą vietą."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis na str. %lld. Przeciągnij go lub stuknij inne miejsce."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись на стр. %lld. Перетащите пальцем или коснитесь другого места."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "В этом режиме каждое касание ставит новую подпись, и каждую можно двигать отдельно."
           }
         }
       }
     },
-    "Signature preview" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschriftvorschau"
+    "Multiple signature mode. Tap the PDF to place one.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modus für mehrere Unterschriften. Tippen Sie auf das PDF, um eine zu platzieren."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature preview"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple signature mode. Tap the PDF to place one."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vista previa de la firma"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de varias firmas. Pulse el PDF para colocar una."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aperçu de la signature"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitme allkirja režiim. Puudutage PDF-i, et paigutada."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašo peržiūra"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode signatures multiples. Touchez le PDF pour en placer une."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podgląd podpisu"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità firme multiple. Tocca il PDF per posizionarne una."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Превью подписи"
-          }
-        }
-      }
-    },
-    "Signature removed. Tap the PDF to place it again." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift entfernt. Tippen Sie auf das PDF, um sie erneut zu platzieren."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kelių parašų režimas. Palieskite PDF, kad padėtumėte."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature removed. Tap the PDF to place it again."
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vairāku parakstu režīms. Pieskarieties PDF, lai novietotu."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firma eliminada. Pulse el PDF para colocarla de nuevo."
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb wielu podpisów. Stuknij PDF, aby umieścić podpis."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature supprimée. Touchez le PDF pour la replacer."
-          }
-        },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas pašalintas. Palieskite PDF, kad padėtumėte iš naujo."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis usunięty. Stuknij PDF, aby umieścić go ponownie."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись удалена. Коснитесь PDF, чтобы поставить снова."
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим нескольких подписей. Коснитесь PDF, чтобы поставить."
           }
         }
       }
     },
-    "Signature updated. Drag it or tap another spot." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift aktualisiert. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+    "Multiple signature mode. Tap to add another; drag each one separately.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modus für mehrere Unterschriften. Tippen Sie, um eine weitere hinzuzufügen; ziehen Sie jede einzeln."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature updated. Drag it or tap another spot."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple signature mode. Tap to add another; drag each one separately."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firma actualizada. Arrástrela o pulse otro lugar."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de varias firmas. Pulse para añadir otra; arrastre cada una por separado."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature mise à jour. Faites-la glisser ou touchez un autre endroit."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitme allkirja režiim. Puudutage, et lisada veel; igaüht saab eraldi lohistada."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas atnaujintas. Vilkite pirštu arba palieskite kitą vietą."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode signatures multiples. Touchez pour en ajouter une autre ; faites glisser chacune séparément."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis zaktualizowany. Przeciągnij go lub stuknij inne miejsce."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità firme multiple. Tocca per aggiungerne un'altra; trascina ciascuna separatamente."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись обновлена. Перетащите пальцем или коснитесь другого места."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kelių parašų režimas. Palieskite, kad pridėtumėte dar vieną; kiekvieną galima vilkti atskirai."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vairāku parakstu režīms. Pieskarieties, lai pievienotu vēl; katru var vilkt atsevišķi."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb wielu podpisów. Stuknij, aby dodać kolejny; każdy przeciągaj osobno."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим нескольких подписей. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
           }
         }
       }
     },
-    "Signature updated. Tap the PDF to place another." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschrift aktualisiert. Tippen Sie auf das PDF, um eine weitere zu platzieren."
+    "Multiple signatures": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehrere Unterschriften"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature updated. Tap the PDF to place another."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Multiple signatures"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firma actualizada. Pulse el PDF para colocar otra."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varias firmas"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signature mise à jour. Touchez le PDF pour en placer une autre."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mitu allkirja"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašas atnaujintas. Palieskite PDF, kad padėtumėte dar vieną."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Plusieurs signatures"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpis zaktualizowany. Stuknij PDF, aby umieścić kolejny."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firme multiple"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подпись обновлена. Коснитесь PDF, чтобы поставить ещё одну."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keli parašai"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vairāki paraksti"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wiele podpisów"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Несколько подписей"
           }
         }
       }
     },
-    "Signatures: %lld. Drag each one separately." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschriften: %lld. Ziehen Sie jede einzeln."
+    "Navy": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dunkelblau"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signatures: %lld. Drag each one separately."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Navy"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firmas: %lld. Arrastre cada una por separado."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azul marino"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signatures : %lld. Faites glisser chacune séparément."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumesinine"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašų: %lld. Kiekvieną galima vilkti atskirai."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bleu marine"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpisów: %lld. Każdy przeciągaj osobno."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blu scuro"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подписей: %lld. Каждую можно двигать отдельно."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamsiai mėlyna"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tumši zila"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Granatowy"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тёмно-синий"
           }
         }
       }
     },
-    "Signatures: %lld. Tap to add another; drag each one separately." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschriften: %lld. Tippen Sie, um eine weitere hinzuzufügen; ziehen Sie jede einzeln."
+    "No PDF": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein PDF"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signatures: %lld. Tap to add another; drag each one separately."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No PDF"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firmas: %lld. Pulse para añadir otra; arrastre cada una por separado."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay PDF"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signatures : %lld. Touchez pour en ajouter une autre ; faites glisser chacune séparément."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF puudub"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašų: %lld. Palieskite, kad pridėtumėte dar vieną; kiekvieną galima vilkti atskirai."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pas de PDF"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpisów: %lld. Stuknij, aby dodać kolejny; każdy przeciągaj osobno."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun PDF"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подписей: %lld. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nėra PDF"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nav PDF"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Brak PDF"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет PDF"
           }
         }
       }
     },
-    "Signatures: %lld. Tap to add another." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Unterschriften: %lld. Tippen Sie, um eine weitere hinzuzufügen."
+    "OK": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signatures: %lld. Tap to add another."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Firmas: %lld. Pulse para añadir otra."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signatures : %lld. Touchez pour en ajouter une autre."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parašų: %lld. Palieskite, kad pridėtumėte dar vieną."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Podpisów: %lld. Stuknij, aby dodać kolejny."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Подписей: %lld. Коснитесь, чтобы добавить ещё."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gerai"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Labi"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
           }
         }
       }
     },
-    "Single signature mode — kept the last one. Drag it or tap another spot." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einzelunterschrift — die letzte bleibt. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+    "Open": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Single signature mode — kept the last one. Drag it or tap another spot."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de una firma: se conservó la última. Arrástrela o pulse otro lugar."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode une signature — la dernière a été conservée. Faites-la glisser ou touchez un autre endroit."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ava"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vieno parašo režimas — paliktas paskutinis. Vilkite arba palieskite kitą vietą."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb jednego podpisu — zostawiono ostatni. Przeciągnij go lub stuknij inne miejsce."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим одной подписи — оставлена последняя. Перетащите или коснитесь другого места."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atidaryti"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atvērt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открыть"
           }
         }
       }
     },
-    "Single signature mode. Drag it or tap another spot." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einzelunterschrift. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+    "Open a PDF first.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen Sie zuerst ein PDF."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Single signature mode. Drag it or tap another spot."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a PDF first."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de una firma. Arrástrela o pulse otro lugar."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra primero un PDF."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode une signature. Faites-la glisser ou touchez un autre endroit."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esmalt avage PDF."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vieno parašo režimas. Vilkite pirštu arba palieskite kitą vietą."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez d’abord un PDF."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb jednego podpisu. Przeciągnij go lub stuknij inne miejsce."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima apri un PDF."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим одной подписи. Перетащите пальцем или коснитесь другого места."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pirmiausia atidarykite PDF."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vispirms atveriet PDF."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Najpierw otwórz plik PDF."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сначала откройте PDF."
           }
         }
       }
     },
-    "Single signature mode. Tap the PDF to place the signature." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Einzelunterschrift. Tippen Sie auf das PDF, um sie zu platzieren."
+    "Open a PDF, draw a signature, then tap the page to place it.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffnen Sie ein PDF, zeichnen Sie eine Unterschrift und tippen Sie auf die Seite."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Single signature mode. Tap the PDF to place the signature."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open a PDF, draw a signature, then tap the page to place it."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de una firma. Pulse el PDF para colocarla."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra un PDF, dibuje una firma y pulse el lugar en la página."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mode une signature. Touchez le PDF pour la placer."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avage PDF, joonistage allkiri ja puudutage kohta lehel."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vieno parašo režimas. Palieskite PDF, kad padėtumėte parašą."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez un PDF, dessinez une signature, puis touchez la page pour la placer."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tryb jednego podpisu. Stuknij PDF, aby umieścić podpis."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri un PDF, disegna una firma e tocca il punto sulla pagina."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Режим одной подписи. Коснитесь PDF, куда поставить подпись."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atidarykite PDF, nupieškite parašą ir palieskite vietą puslapyje."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atveriet PDF, uzzīmējiet parakstu un pieskarieties vietai lapā."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Otwórz PDF, narysuj podpis i stuknij miejsce na stronie."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Откройте PDF, нарисуйте подпись и коснитесь места на странице."
           }
         }
       }
     },
-    "Tap Open to get started." : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tippen Sie auf Öffnen, um zu beginnen."
+    "PDF loaded. Draw a signature, then tap the page.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF geladen. Zeichnen Sie eine Unterschrift und tippen Sie auf die Seite."
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tap Open to get started."
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF loaded. Draw a signature, then tap the page."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pulse Abrir para empezar."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF cargado. Dibuje una firma y pulse la página."
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Touchez Ouvrir pour commencer."
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF laaditud. Joonistage allkiri, seejärel puudutage lehte."
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Palieskite „Atidaryti“, kad pradėtumėte."
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF chargé. Dessinez une signature, puis touchez la page."
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Stuknij Otwórz, aby zacząć."
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF caricato. Disegna una firma, poi tocca la pagina."
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Нажмите «Открыть», чтобы начать."
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF įkeltas. Nupieškite parašą ir palieskite puslapį."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF ielādēts. Uzzīmējiet parakstu, pēc tam pieskarieties lapai."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wczytano PDF. Narysuj podpis, potem stuknij stronę."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PDF загружен. Нарисуйте подпись, затем коснитесь места на странице."
           }
         }
       }
     },
-    "Zoom" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zoomen"
+    "Red": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rot"
           }
         },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zoom"
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zoom"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rojo"
           }
         },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zoom"
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Punane"
           }
         },
-        "lt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mastelis"
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rouge"
           }
         },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Powiększenie"
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rosso"
           }
         },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Масштаб"
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raudona"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sarkana"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Czerwony"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Красный"
+          }
+        }
+      }
+    },
+    "Save": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sichern"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvesta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Išsaugoti"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saglabāt"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zapisz"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сохранить"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seaded"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nustatymai"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iestatījumi"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ustawienia"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройки"
+          }
+        }
+      }
+    },
+    "Signature": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись"
+          }
+        }
+      }
+    },
+    "Signature color": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschriftfarbe"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature color"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Color de la firma"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkirja värv"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couleur de la signature"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colore della firma"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašo spalva"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksta krāsa"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kolor podpisu"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цвет подписи"
+          }
+        }
+      }
+    },
+    "Signature is ready. Tap the PDF to place it. Each tap adds another.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift ist fertig. Tippen Sie auf das PDF, um sie zu platzieren. Jeder Tipp fügt eine weitere hinzu."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature is ready. Tap the PDF to place it. Each tap adds another."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La firma está lista. Pulse el PDF para colocarla. Cada toque añade otra."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri on valmis. Puudutage PDF-i, et paigutada. Iga puudutus lisab veel ühe."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La signature est prête. Touchez le PDF pour la placer. Chaque toucher en ajoute une autre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La firma è pronta. Tocca il PDF per posizionarla. Ogni tocco ne aggiunge un'altra."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas paruoštas. Palieskite PDF, kad padėtumėte. Kiekvienas palietimas pridės dar vieną."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts gatavs. Pieskarieties PDF, lai novietotu. Katrs pieskāriens pievienos vēl vienu."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis gotowy. Stuknij PDF, aby go umieścić. Każde stuknięcie doda kolejny."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись готова. Коснитесь PDF, чтобы поставить. Каждое касание добавит ещё одну."
+          }
+        }
+      }
+    },
+    "Signature is ready. Tap the PDF where you want it.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift ist fertig. Tippen Sie auf das PDF, wo sie stehen soll."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature is ready. Tap the PDF where you want it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La firma está lista. Pulse el PDF donde quiera colocarla."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri on valmis. Puudutage PDF-i, kuhu see paigutada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La signature est prête. Touchez le PDF à l’endroit souhaité."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La firma è pronta. Tocca il PDF dove vuoi posizionarla."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas paruoštas. Palieskite PDF ten, kur jį padėti."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts gatavs. Pieskarieties PDF, kur to novietot."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis gotowy. Stuknij PDF w miejscu, gdzie go umieścić."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись готова. Коснитесь PDF, куда её поставить."
+          }
+        }
+      }
+    },
+    "Signature on page %lld. Drag it or tap another spot.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift auf S. %lld. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature on page %lld. Drag it or tap another spot."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma en la pág. %lld. Arrástrela o pulse otro lugar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri lk %lld. Lohistage seda või puudutage teist kohta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature à la page %lld. Faites-la glisser ou touchez un autre endroit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma a pag. %lld. Trascinala o tocca un altro punto."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas %lld psl. Vilkite pirštu arba palieskite kitą vietą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts %lld. lpp. Velciet to vai pieskarieties citai vietai."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis na str. %lld. Przeciągnij go lub stuknij inne miejsce."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись на стр. %lld. Перетащите пальцем или коснитесь другого места."
+          }
+        }
+      }
+    },
+    "Signature preview": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschriftvorschau"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature preview"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vista previa de la firma"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkirja eelvaade"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aperçu de la signature"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anteprima della firma"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašo peržiūra"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksta priekšskatījums"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podgląd podpisu"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Превью подписи"
+          }
+        }
+      }
+    },
+    "Signature removed. Tap the PDF to place it again.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift entfernt. Tippen Sie auf das PDF, um sie erneut zu platzieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature removed. Tap the PDF to place it again."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma eliminada. Pulse el PDF para colocarla de nuevo."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri eemaldatud. Puudutage PDF-i, et uuesti paigutada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature supprimée. Touchez le PDF pour la replacer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma rimossa. Tocca il PDF per riposizionarla."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas pašalintas. Palieskite PDF, kad padėtumėte iš naujo."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts noņemts. Pieskarieties PDF, lai novietotu vēlreiz."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis usunięty. Stuknij PDF, aby umieścić go ponownie."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись удалена. Коснитесь PDF, чтобы поставить снова."
+          }
+        }
+      }
+    },
+    "Signature updated. Drag it or tap another spot.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift aktualisiert. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature updated. Drag it or tap another spot."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma actualizada. Arrástrela o pulse otro lugar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri uuendatud. Lohistage seda või puudutage teist kohta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature mise à jour. Faites-la glisser ou touchez un autre endroit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma aggiornata. Trascinala o tocca un altro punto."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas atnaujintas. Vilkite pirštu arba palieskite kitą vietą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts atjaunināts. Velciet to vai pieskarieties citai vietai."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis zaktualizowany. Przeciągnij go lub stuknij inne miejsce."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись обновлена. Перетащите пальцем или коснитесь другого места."
+          }
+        }
+      }
+    },
+    "Signature updated. Tap the PDF to place another.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschrift aktualisiert. Tippen Sie auf das PDF, um eine weitere zu platzieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature updated. Tap the PDF to place another."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma actualizada. Pulse el PDF para colocar otra."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkiri uuendatud. Puudutage PDF-i, et paigutada veel üks."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signature mise à jour. Touchez le PDF pour en placer une autre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firma aggiornata. Tocca il PDF per posizionarne un'altra."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašas atnaujintas. Palieskite PDF, kad padėtumėte dar vieną."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksts atjaunināts. Pieskarieties PDF, lai novietotu vēl vienu."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpis zaktualizowany. Stuknij PDF, aby umieścić kolejny."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подпись обновлена. Коснитесь PDF, чтобы поставить ещё одну."
+          }
+        }
+      }
+    },
+    "Signatures: %lld. Drag each one separately.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschriften: %lld. Ziehen Sie jede einzeln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatures: %lld. Drag each one separately."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firmas: %lld. Arrastre cada una por separado."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkirju: %lld. Igaüht saab eraldi lohistada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatures : %lld. Faites glisser chacune séparément."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firme: %lld. Trascina ciascuna separatamente."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašų: %lld. Kiekvieną galima vilkti atskirai."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksti: %lld. Katru var vilkt atsevišķi."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpisów: %lld. Każdy przeciągaj osobno."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подписей: %lld. Каждую можно двигать отдельно."
+          }
+        }
+      }
+    },
+    "Signatures: %lld. Tap to add another; drag each one separately.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschriften: %lld. Tippen Sie, um eine weitere hinzuzufügen; ziehen Sie jede einzeln."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatures: %lld. Tap to add another; drag each one separately."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firmas: %lld. Pulse para añadir otra; arrastre cada una por separado."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkirju: %lld. Puudutage, et lisada veel; igaüht saab eraldi lohistada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatures : %lld. Touchez pour en ajouter une autre ; faites glisser chacune séparément."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firme: %lld. Tocca per aggiungerne un'altra; trascina ciascuna separatamente."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašų: %lld. Palieskite, kad pridėtumėte dar vieną; kiekvieną galima vilkti atskirai."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksti: %lld. Pieskarieties, lai pievienotu vēl; katru var vilkt atsevišķi."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpisów: %lld. Stuknij, aby dodać kolejny; każdy przeciągaj osobno."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подписей: %lld. Коснитесь, чтобы добавить ещё; каждую можно двигать отдельно."
+          }
+        }
+      }
+    },
+    "Signatures: %lld. Tap to add another.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unterschriften: %lld. Tippen Sie, um eine weitere hinzuzufügen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatures: %lld. Tap to add another."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firmas: %lld. Pulse para añadir otra."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allkirju: %lld. Puudutage, et lisada veel."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signatures : %lld. Touchez pour en ajouter une autre."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firme: %lld. Tocca per aggiungerne un'altra."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parašų: %lld. Palieskite, kad pridėtumėte dar vieną."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paraksti: %lld. Pieskarieties, lai pievienotu vēl."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Podpisów: %lld. Stuknij, aby dodać kolejny."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подписей: %lld. Коснитесь, чтобы добавить ещё."
+          }
+        }
+      }
+    },
+    "Single signature mode — kept the last one. Drag it or tap another spot.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einzelunterschrift — die letzte bleibt. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Single signature mode — kept the last one. Drag it or tap another spot."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de una firma: se conservó la última. Arrástrela o pulse otro lugar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ühe allkirja režiim — jäeti viimane. Lohistage seda või puudutage teist kohta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode une signature — la dernière a été conservée. Faites-la glisser ou touchez un autre endroit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità firma singola — mantenuta l'ultima. Trascinala o tocca un altro punto."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vieno parašo režimas — paliktas paskutinis. Vilkite arba palieskite kitą vietą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viena paraksta režīms — paturēts pēdējais. Velciet to vai pieskarieties citai vietai."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb jednego podpisu — zostawiono ostatni. Przeciągnij go lub stuknij inne miejsce."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим одной подписи — оставлена последняя. Перетащите или коснитесь другого места."
+          }
+        }
+      }
+    },
+    "Single signature mode. Drag it or tap another spot.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einzelunterschrift. Ziehen Sie sie oder tippen Sie auf eine andere Stelle."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Single signature mode. Drag it or tap another spot."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de una firma. Arrástrela o pulse otro lugar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ühe allkirja režiim. Lohistage seda või puudutage teist kohta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode une signature. Faites-la glisser ou touchez un autre endroit."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità firma singola. Trascinala o tocca un altro punto."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vieno parašo režimas. Vilkite pirštu arba palieskite kitą vietą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viena paraksta režīms. Velciet to vai pieskarieties citai vietai."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb jednego podpisu. Przeciągnij go lub stuknij inne miejsce."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим одной подписи. Перетащите пальцем или коснитесь другого места."
+          }
+        }
+      }
+    },
+    "Single signature mode. Tap the PDF to place the signature.": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einzelunterschrift. Tippen Sie auf das PDF, um sie zu platzieren."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Single signature mode. Tap the PDF to place the signature."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de una firma. Pulse el PDF para colocarla."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ühe allkirja režiim. Puudutage PDF-i, kuhu allkiri paigutada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mode une signature. Touchez le PDF pour la placer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modalità firma singola. Tocca il PDF per posizionare la firma."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vieno parašo režimas. Palieskite PDF, kad padėtumėte parašą."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Viena paraksta režīms. Pieskarieties PDF, lai novietotu parakstu."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tryb jednego podpisu. Stuknij PDF, aby umieścić podpis."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Режим одной подписи. Коснитесь PDF, куда поставить подпись."
+          }
+        }
+      }
+    },
+    "Tap Open to get started.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tippen Sie auf Öffnen, um zu beginnen."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap Open to get started."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pulse Abrir para empezar."
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puudutage «Ava», et alustada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez Ouvrir pour commencer."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca Apri per iniziare."
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Palieskite „Atidaryti“, kad pradėtumėte."
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pieskarieties «Atvērt», lai sāktu."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stuknij Otwórz, aby zacząć."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите «Открыть», чтобы начать."
+          }
+        }
+      }
+    },
+    "Zoom": {
+      "extractionState": "stale",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoomen"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoom"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoom"
+          }
+        },
+        "et": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suurendus"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoom"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zoom"
+          }
+        },
+        "lt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mastelis"
+          }
+        },
+        "lv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tālummaiņa"
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Powiększenie"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Масштаб"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }
