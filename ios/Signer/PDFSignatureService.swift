@@ -52,7 +52,7 @@ enum PDFSignatureService {
             context.translateBy(x: -pdfKitBox.minX, y: -pdfKitBox.minY)
             drawOriginalPage(page, in: context, displayBox: pdfKitBox)
             for signature in signatures where signature.pageIndex == index {
-                drawSignature(signature, in: context)
+                drawSignature(signature, in: context, pageHeight: pdfKitBox.height)
             }
             context.restoreGState()
             context.endPage()
@@ -95,13 +95,16 @@ enum PDFSignatureService {
         context.restoreGState()
     }
 
-    private static func drawSignature(_ signature: PlacedSignature, in context: CGContext) {
-        guard let cgImage = signature.image.cgImage else { return }
+    private static func drawSignature(_ signature: PlacedSignature, in context: CGContext, pageHeight: CGFloat) {
         let rect = signature.rect
         context.saveGState()
-        context.translateBy(x: rect.minX, y: rect.minY + rect.height)
+        // Flip the entire context to UIKit top-left-origin so UIImage.draw works correctly.
+        context.translateBy(x: 0, y: pageHeight)
         context.scaleBy(x: 1, y: -1)
-        context.draw(cgImage, in: CGRect(origin: .zero, size: rect.size))
+        let flippedRect = CGRect(x: rect.minX, y: pageHeight - rect.maxY, width: rect.width, height: rect.height)
+        UIGraphicsPushContext(context)
+        signature.image.draw(in: flippedRect)
+        UIGraphicsPopContext()
         context.restoreGState()
     }
 }
