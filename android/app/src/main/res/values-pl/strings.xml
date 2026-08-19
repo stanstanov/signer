@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Signer</string>
+    <string name="app_name">Sivelo</string>
     <string name="action_open">Otwórz</string>
     <string name="action_settings">Ustawienia</string>
     <string name="action_signature">Podpis</string>
