@@ -2,5 +2,8 @@
 xcuserdata/
 *.xcuserstate
 
+# Android release builds
+android/app/release/
+
 # macOS
 .DS_Store
