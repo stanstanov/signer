@@ -1,6 +1,6 @@
 # Signer for Android
 
-Kotlin / Jetpack Compose clone of the iOS Signer app (`lt.turron.signer`).
+Kotlin / Jetpack Compose clone of the iOS Signer app (`lt.turron.sivelo`).
 
 ## Open in Android Studio
 

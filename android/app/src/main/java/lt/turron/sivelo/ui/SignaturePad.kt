@@ -1,4 +1,4 @@
-package lt.turron.signer.ui
+package lt.turron.sivelo.ui
 
 import android.graphics.Bitmap
 import android.graphics.Paint
@@ -55,8 +55,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import lt.turron.signer.InkSwatches
-import lt.turron.signer.R
+import lt.turron.sivelo.InkSwatches
+import lt.turron.sivelo.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

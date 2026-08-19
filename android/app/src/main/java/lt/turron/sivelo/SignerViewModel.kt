@@ -1,4 +1,4 @@
-package lt.turron.signer
+package lt.turron.sivelo
 
 import android.app.Application
 import android.graphics.Bitmap
@@ -13,8 +13,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import lt.turron.signer.pdf.PdfPageRenderer
-import lt.turron.signer.pdf.PdfSignatureService
+import lt.turron.sivelo.pdf.PdfPageRenderer
+import lt.turron.sivelo.pdf.PdfSignatureService
 import java.io.File
 import java.util.UUID
 

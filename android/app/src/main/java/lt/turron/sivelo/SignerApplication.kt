@@ -1,4 +1,4 @@
-package lt.turron.signer
+package lt.turron.sivelo
 
 import android.app.Application
 import com.tom_roush.pdfbox.android.PDFBoxResourceLoader

@@ -1,4 +1,4 @@
-package lt.turron.signer.ui
+package lt.turron.sivelo.ui
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -83,12 +83,12 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import lt.turron.signer.PlacedSignature
-import lt.turron.signer.R
-import lt.turron.signer.SignerUiState
-import lt.turron.signer.SignerViewModel
-import lt.turron.signer.StatusKey
-import lt.turron.signer.pdf.PdfPageRenderer
+import lt.turron.sivelo.PlacedSignature
+import lt.turron.sivelo.R
+import lt.turron.sivelo.SignerUiState
+import lt.turron.sivelo.SignerViewModel
+import lt.turron.sivelo.StatusKey
+import lt.turron.sivelo.pdf.PdfPageRenderer
 import kotlin.math.max
 import kotlin.math.roundToInt
 

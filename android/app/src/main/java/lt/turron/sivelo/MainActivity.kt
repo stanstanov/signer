@@ -1,4 +1,4 @@
-package lt.turron.signer
+package lt.turron.sivelo
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,8 +8,8 @@ import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import lt.turron.signer.ui.MainScreen
-import lt.turron.signer.ui.theme.SignerTheme
+import lt.turron.sivelo.ui.MainScreen
+import lt.turron.sivelo.ui.theme.SignerTheme
 
 class MainActivity : ComponentActivity() {
     private val viewModel: SignerViewModel by viewModels()

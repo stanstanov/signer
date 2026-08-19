@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "lt.turron.signer"
+    namespace = "lt.turron.sivelo"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "lt.turron.signer"
+        applicationId = "lt.turron.sivelo"
         minSdk = 26
         targetSdk = 35
         versionCode = 1

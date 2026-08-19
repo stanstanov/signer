@@ -1,4 +1,4 @@
-package lt.turron.signer
+package lt.turron.sivelo
 
 data class PlacedSignature(
     val id: String,

@@ -1,4 +1,4 @@
-package lt.turron.signer.ui
+package lt.turron.sivelo.ui
 
 import android.content.Context
 import android.view.ContextThemeWrapper

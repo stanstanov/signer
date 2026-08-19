@@ -1,4 +1,4 @@
-package lt.turron.signer.ui.theme
+package lt.turron.sivelo.ui.theme
 
 import android.content.Context
 import android.util.TypedValue

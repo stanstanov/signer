@@ -1,9 +1,9 @@
-package lt.turron.signer.pdf
+package lt.turron.sivelo.pdf
 
 import com.tom_roush.pdfbox.pdmodel.PDDocument
 import com.tom_roush.pdfbox.pdmodel.PDPageContentStream
 import com.tom_roush.pdfbox.pdmodel.graphics.image.LosslessFactory
-import lt.turron.signer.PlacedSignature
+import lt.turron.sivelo.PlacedSignature
 import java.io.File
 
 object PdfSignatureService {
