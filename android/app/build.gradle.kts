@@ -6,13 +6,13 @@ plugins {
 
 android {
     namespace = "lt.turron.sivelo"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "lt.turron.sivelo"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 4
+        targetSdk = 36
+        versionCode = 5
         versionName = "1.0"
     }
 
